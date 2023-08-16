@@ -20,8 +20,11 @@ void ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect){
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong");
-   
+    sf::ContextSettings settings;
+    settings.antialiasingLevel = 8;
+
+    sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::Default, settings);
+
     //ball
     sf::CircleShape ball(10.f);
     ball.setFillColor(sf::Color::White);
