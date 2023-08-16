@@ -12,6 +12,8 @@ void ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect){
         else if(ball.getPosition().x<=rect.getPosition().x+rect.getSize().x && ball.getPosition().x>rect.getPosition().x+rect.getSize().x/2){
             speedX*=-1;
         }
+
+        //check vertical collisions!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
 }
 
@@ -52,10 +54,10 @@ int main()
         }
         //GET DELTATIME!!!
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-            player.move(0.f,-1.f);
+            player.move(0.f,-0.4);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-            player.move(0.f,1.f);
+            player.move(0.f,0.4);
         }
 
         //border check for player
@@ -90,6 +92,22 @@ int main()
         //ball collisions with entities
         ballRectangleCollision(ball,enemy);
         ballRectangleCollision(ball,player);
+
+        //enemy movement
+        if(enemy.getPosition().y+enemy.getSize().y/2>ball.getPosition().y+ball.getRadius()/2){
+            enemy.move(0.f,-0.4);
+        }
+        else{
+            enemy.move(0.f,0.4);
+        }
+
+        //border check for enemy
+        if(enemy.getPosition().y<=0){
+            enemy.setPosition(enemy.getPosition().x,0);
+        }
+        else if(enemy.getPosition().y+enemy.getSize().y>=720){
+            enemy.setPosition(enemy.getPosition().x,720-enemy.getSize().y);
+        }
 
         window.clear();
         
