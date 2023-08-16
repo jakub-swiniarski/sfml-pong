@@ -25,7 +25,7 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::Default, settings);
 
-    sf::Font digital;
+    sf::Font digital; //CHECK IF THE FILE IS PRESENT!!!!!!
     digital.loadFromFile("digital.ttf");
 
     //ball
