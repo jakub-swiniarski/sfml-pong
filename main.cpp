@@ -25,6 +25,9 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::Default, settings);
 
+    sf::Font digital;
+    digital.loadFromFile("digital.ttf");
+
     //ball
     sf::CircleShape ball(10.f);
     ball.setFillColor(sf::Color::White);
@@ -35,12 +38,25 @@ int main()
     enemy.setFillColor(sf::Color::White);
     enemy.setPosition(100.f,720.f/2.f-enemy.getSize().y/2);
     int enemyPoints=0;
+    sf::Text enemyCounter;
+    enemyCounter.setFont(digital);
+    enemyCounter.setString("0");
+    enemyCounter.setCharacterSize(120);
+    enemyCounter.setFillColor(sf::Color::White);
+    enemyCounter.setPosition(300,0);
 
     //player
     sf::RectangleShape player(sf::Vector2f(20.f, 100.f));
     player.setFillColor(sf::Color::White);
     player.setPosition(1280.f-player.getSize().x-100.f,720.f/2.f-player.getSize().y/2); 
     int playerPoints=0;
+    sf::Text playerCounter;
+    playerCounter.setFont(digital);
+    playerCounter.setString("0");
+    playerCounter.setCharacterSize(120);
+    playerCounter.setFillColor(sf::Color::White);
+    playerCounter.setPosition(1280-300-120,0);
+
     
     while (window.isOpen())
     {
@@ -78,12 +94,16 @@ int main()
         if(ball.getPosition().x<=0){
             //player wins
             playerPoints++;
-            ball.setPosition(1280.f/2.f-ball.getRadius(),720.f/2.f-ball.getRadius()); 
+            ball.setPosition(1280.f/2.f-ball.getRadius(),720.f/2.f-ball.getRadius());
+            //update score
+            playerCounter.setString(std::to_string(playerPoints));
         }
         else if(ball.getPosition().x>=1280-ball.getRadius()){
             //enemy wins
             enemyPoints++;
             ball.setPosition(1280.f/2.f-ball.getRadius(),720.f/2.f-ball.getRadius());
+            //update score
+            enemyCounter.setString(std::to_string(enemyPoints));
         }
         if(ball.getPosition().y<=0){
             speedY*=-1;
@@ -117,6 +137,10 @@ int main()
         window.draw(ball);
         window.draw(enemy);
         window.draw(player);
+
+        //text
+        window.draw(enemyCounter);
+        window.draw(playerCounter);
         
         window.display();
     }
