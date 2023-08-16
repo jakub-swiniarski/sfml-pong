@@ -1,15 +1,29 @@
 #include <SFML/Graphics.hpp>
 
+float speedX=0.5;
+float speedY=0.5;
+
+void ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect){
+    if(ball.getPosition().y<rect.getPosition().y+rect.getSize().y && ball.getPosition().y+ball.getRadius()>rect.getPosition().y){
+        //check horizontal collisions
+        if(ball.getPosition().x+ball.getRadius()>=rect.getPosition().x && ball.getPosition().x+ball.getRadius()<rect.getPosition().x+rect.getSize().x/2){
+            speedX*=-1;
+        }
+        else if(ball.getPosition().x<=rect.getPosition().x+rect.getSize().x && ball.getPosition().x>rect.getPosition().x+rect.getSize().x/2){
+            speedX*=-1;
+        }
+    }
+}
+
+
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong");
-    
+   
     //ball
     sf::CircleShape ball(10.f);
     ball.setFillColor(sf::Color::White);
-    ball.setPosition(1280.f/2.f-ball.getRadius(),720.f/2.f-ball.getRadius());
-    float speedX=0.5;
-    float speedY=0.5;
+    ball.setPosition(1280.f/2.f-ball.getRadius(),720.f/2.f-ball.getRadius());    
 
     //enemy
     sf::RectangleShape enemy(sf::Vector2f(20.f, 100.f));
@@ -22,7 +36,7 @@ int main()
     player.setFillColor(sf::Color::White);
     player.setPosition(1280.f-player.getSize().x-100.f,720.f/2.f-player.getSize().y/2); 
     int playerPoints=0;
-
+    
     while (window.isOpen())
     {
         sf::Event event;
@@ -72,6 +86,10 @@ int main()
         else if(ball.getPosition().y>=720-ball.getRadius()){
             speedY*=-1;
         }
+
+        //ball collisions with entities
+        ballRectangleCollision(ball,enemy);
+        ballRectangleCollision(ball,player);
 
         window.clear();
         
