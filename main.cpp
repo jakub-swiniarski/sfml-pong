@@ -4,16 +4,23 @@ float speedX=0.5;
 float speedY=0.5;
 
 void ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect){
-    if(ball.getPosition().y<rect.getPosition().y+rect.getSize().y && ball.getPosition().y+ball.getRadius()>rect.getPosition().y){
+    if(ball.getPosition().y<=rect.getPosition().y+rect.getSize().y && ball.getPosition().y+ball.getRadius()>=rect.getPosition().y){
         //check horizontal collisions
         if(ball.getPosition().x+ball.getRadius()>=rect.getPosition().x && ball.getPosition().x+ball.getRadius()<rect.getPosition().x+rect.getSize().x/2){
             speedX*=-1;
         }
         else if(ball.getPosition().x<=rect.getPosition().x+rect.getSize().x && ball.getPosition().x>rect.getPosition().x+rect.getSize().x/2){
             speedX*=-1;
+        }    
+    }
+    if(ball.getPosition().x+ball.getRadius()>rect.getPosition().x && ball.getPosition().x<rect.getPosition().x+rect.getSize().x){
+        //check vertical collisions
+        if(ball.getPosition().y<=rect.getPosition().y+rect.getSize().y && ball.getPosition().y>rect.getPosition().y+rect.getSize().y/2){
+            speedY*=-1;
         }
-
-        //check vertical collisions!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        else if(ball.getPosition().y-ball.getRadius()<=rect.getPosition().y+rect.getSize().y && ball.getPosition().y-ball.getRadius()>rect.getPosition().y-rect.getSize().y){
+            speedY*=-1;
+        }
     }
 }
 
@@ -25,8 +32,10 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::Default, settings);
 
-    sf::Font digital; //CHECK IF THE FILE IS PRESENT!!!!!!
-    digital.loadFromFile("digital.ttf");
+    sf::Font digital;
+    if(!digital.loadFromFile("digital.ttf")){
+        window.close();
+    }
 
     //ball
     sf::CircleShape ball(10.f);
