@@ -7,17 +7,17 @@ int main()
     //ball
     sf::CircleShape ball(10.f);
     ball.setFillColor(sf::Color::White);
-    ball.setPosition(1280.f/2.f-5.f,720.f/2.f+5.f);
+    ball.setPosition(1280.f/2.f-5.f,720.f/2.f-5.f);
 
     //enemy
     sf::RectangleShape enemy(sf::Vector2f(20.f, 100.f));
     enemy.setFillColor(sf::Color::White);
-    enemy.setPosition(0.f,0.f);
+    enemy.setPosition(100.f,720.f/2.f-50.f);
 
     //player
     sf::RectangleShape player(sf::Vector2f(20.f, 100.f));
     player.setFillColor(sf::Color::White);
-    player.setPosition(1280.f-20.f,0.f); 
+    player.setPosition(1280.f-20.f-100.f,720.f/2.f-50.f); 
 
     while (window.isOpen())
     {
