@@ -2,9 +2,11 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong");
+    
+    sf::CircleShape ball(10.f);
+    ball.setFillColor(sf::Color::White);
+    ball.setPosition(1280.f/2.f-5.f,720.f/2.f+5.f);
 
     while (window.isOpen())
     {
@@ -16,7 +18,9 @@ int main()
         }
 
         window.clear();
-        window.draw(shape);
+        
+        window.draw(ball);
+        
         window.display();
     }
 
