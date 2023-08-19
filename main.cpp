@@ -1,7 +1,8 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/System/Time.hpp>
 
-float speedX=0.5;
-float speedY=0.5;
+float speedX=240;
+float speedY=240;
 
 void ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect){
     if(ball.getPosition().y<=rect.getPosition().y+rect.getSize().y && ball.getPosition().y+ball.getRadius()>=rect.getPosition().y){
@@ -13,7 +14,7 @@ void ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect){
             speedX*=-1;
         }    
     }
-    if(ball.getPosition().x+ball.getRadius()>rect.getPosition().x && ball.getPosition().x<rect.getPosition().x+rect.getSize().x){
+    /*if(ball.getPosition().x+ball.getRadius()>rect.getPosition().x && ball.getPosition().x<rect.getPosition().x+rect.getSize().x){
         //check vertical collisions
         if(ball.getPosition().y<=rect.getPosition().y+rect.getSize().y && ball.getPosition().y>rect.getPosition().y+rect.getSize().y/2){
             speedY*=-1;
@@ -21,9 +22,8 @@ void ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect){
         else if(ball.getPosition().y-ball.getRadius()<=rect.getPosition().y+rect.getSize().y && ball.getPosition().y-ball.getRadius()>rect.getPosition().y-rect.getSize().y){
             speedY*=-1;
         }
-    }
+    }*/
 }
-
 
 int main()
 {
@@ -66,9 +66,13 @@ int main()
     playerCounter.setFillColor(sf::Color::White);
     playerCounter.setPosition(1280-300-120,0);
 
-    
+    sf::Clock dtClock;
+    sf::Time dt;
+
     while (window.isOpen())
     {
+        dt=dtClock.restart();
+
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -79,13 +83,13 @@ int main()
         //keyboard input
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
             window.close();
+        
         }
-        //GET DELTATIME!!!
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-            player.move(0.f,-0.4);
+            player.move(0.f,-192*dt.asSeconds());
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-            player.move(0.f,0.4);
+            player.move(0.f,192*dt.asSeconds());
         }
 
         //border check for player
@@ -95,10 +99,7 @@ int main()
         else if(player.getPosition().y<=0){
             player.setPosition(player.getPosition().x,0);
         }
-
-        //ball movement
-        ball.move(speedX,speedY);
-
+        
         //ball border check
         if(ball.getPosition().x<=0){
             //player wins
@@ -119,7 +120,10 @@ int main()
         }
         else if(ball.getPosition().y>=720-ball.getRadius()){
             speedY*=-1;
-        }
+        } 
+
+        //ball movement
+        ball.move(speedX*dt.asSeconds(),speedY*dt.asSeconds()); 
 
         //ball collisions with entities
         ballRectangleCollision(ball,enemy);
@@ -127,12 +131,12 @@ int main()
 
         //enemy movement
         if(enemy.getPosition().y+enemy.getSize().y/2>ball.getPosition().y+ball.getRadius()/2){
-            enemy.move(0.f,-0.4);
+            enemy.move(0.f,-192*dt.asSeconds());
         }
         else{
-            enemy.move(0.f,0.4);
+            enemy.move(0.f,192*dt.asSeconds());
         }
-
+        
         //border check for enemy
         if(enemy.getPosition().y<=0){
             enemy.setPosition(enemy.getPosition().x,0);
