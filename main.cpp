@@ -1,17 +1,21 @@
+#include <SFML/Audio/Sound.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Time.hpp>
+#include <SFML/Audio.hpp>
 
 float speedX=240;
 float speedY=240;
 
-void ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect){
+bool ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect){
     if(ball.getPosition().y<=rect.getPosition().y+rect.getSize().y && ball.getPosition().y+ball.getRadius()>=rect.getPosition().y){
         //check horizontal collisions
         if(ball.getPosition().x+ball.getRadius()>=rect.getPosition().x && ball.getPosition().x+ball.getRadius()<rect.getPosition().x+rect.getSize().x/2){
             speedX*=-1;
+            return 1;
         }
         else if(ball.getPosition().x<=rect.getPosition().x+rect.getSize().x && ball.getPosition().x>rect.getPosition().x+rect.getSize().x/2){
             speedX*=-1;
+            return 1;
         }    
     }
     /*if(ball.getPosition().x+ball.getRadius()>rect.getPosition().x && ball.getPosition().x<rect.getPosition().x+rect.getSize().x){
@@ -23,6 +27,7 @@ void ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect){
             speedY*=-1;
         }
     }*/
+    return 0;
 }
 
 int main()
@@ -31,11 +36,20 @@ int main()
     settings.antialiasingLevel = 8;
 
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::Default, settings);
-
+    
+    //font
     sf::Font digital;
     if(!digital.loadFromFile("digital.ttf")){
         window.close();
     }
+
+    //sound
+    sf::SoundBuffer popBuffer;
+    if(!popBuffer.loadFromFile("assets/pop.wav")){
+        window.close();
+    }
+    sf::Sound popSound;
+    popSound.setBuffer(popBuffer);
 
     //ball
     sf::CircleShape ball(10.f);
@@ -116,9 +130,11 @@ int main()
             enemyCounter.setString(std::to_string(enemyPoints));
         }
         if(ball.getPosition().y<=0){
+            popSound.play();
             speedY*=-1;
         }
         else if(ball.getPosition().y>=720-ball.getRadius()){
+            popSound.play(); 
             speedY*=-1;
         } 
 
@@ -126,8 +142,12 @@ int main()
         ball.move(speedX*dt.asSeconds(),speedY*dt.asSeconds()); 
 
         //ball collisions with entities
-        ballRectangleCollision(ball,enemy);
-        ballRectangleCollision(ball,player);
+        if(ballRectangleCollision(ball,enemy)){
+            popSound.play();
+        }
+        else if(ballRectangleCollision(ball,player)){
+            popSound.play();
+        }
 
         //enemy movement
         if(enemy.getPosition().y+enemy.getSize().y/2>ball.getPosition().y+ball.getRadius()/2){
