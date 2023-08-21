@@ -119,6 +119,7 @@ int main()
             //player wins
             playerPoints++;
             ball.setPosition(1280.f/2.f-ball.getRadius(),720.f/2.f-ball.getRadius());
+
             //update score
             playerCounter.setString(std::to_string(playerPoints));
         }
@@ -126,6 +127,7 @@ int main()
             //enemy wins
             enemyPoints++;
             ball.setPosition(1280.f/2.f-ball.getRadius(),720.f/2.f-ball.getRadius());
+
             //update score
             enemyCounter.setString(std::to_string(enemyPoints));
         }
