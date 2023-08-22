@@ -3,6 +3,7 @@
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/System/Time.hpp>
 #include <SFML/Audio.hpp>
+#include <SFML/Window/Keyboard.hpp>
 #include <string>
 #include <cmath>
 
@@ -86,14 +87,15 @@ int main()
     sf::Clock dtClock;
     sf::Time dt;
     
-    //fps counter
+    //fps counter - turn this into a class
     sf::Text fpsCounter;
     fpsCounter.setFont(digital);
     fpsCounter.setString("0");
-    fpsCounter.setCharacterSize(36);
+    fpsCounter.setCharacterSize(0);
     fpsCounter.setFillColor(sf::Color::White);
     fpsCounter.setPosition(5,-5);
     int fps=0;
+    bool fpsVisible = 0;
 
     while (window.isOpen())
     {
@@ -104,13 +106,25 @@ int main()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
-        }
 
-        //keyboard input
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-            window.close();
-        
+            //keyboard input - single keypress
+            if(event.type==sf::Event::EventType::KeyPressed){
+                if(event.key.code==sf::Keyboard::Escape){
+                    window.close();
+                }    
+                else if(event.key.code==sf::Keyboard::F1){
+                    fpsVisible=!fpsVisible;
+                    if(fpsVisible){
+                        fpsCounter.setCharacterSize(36);
+                    }
+                    else{
+                        fpsCounter.setCharacterSize(0);
+                    } 
+                }
+            }
         }
+ 
+        //player movement
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
             player.move(0.f,-192*dt.asSeconds());
         }
