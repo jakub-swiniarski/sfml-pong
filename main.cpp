@@ -1,7 +1,10 @@
 #include <SFML/Audio/Sound.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Text.hpp>
 #include <SFML/System/Time.hpp>
 #include <SFML/Audio.hpp>
+#include <string>
+#include <cmath>
 
 float speedX=240;
 float speedY=240;
@@ -82,6 +85,15 @@ int main()
 
     sf::Clock dtClock;
     sf::Time dt;
+    
+    //fps counter
+    sf::Text fpsCounter;
+    fpsCounter.setFont(digital);
+    fpsCounter.setString("0");
+    fpsCounter.setCharacterSize(36);
+    fpsCounter.setFillColor(sf::Color::White);
+    fpsCounter.setPosition(5,-5);
+    int fps=0;
 
     while (window.isOpen())
     {
@@ -167,6 +179,9 @@ int main()
             enemy.setPosition(enemy.getPosition().x,720-enemy.getSize().y);
         }
 
+        fps=1/dt.asSeconds();
+        fpsCounter.setString(std::to_string(fps)+" FPS");
+
         window.clear();
         
         window.draw(ball);
@@ -176,6 +191,7 @@ int main()
         //text
         window.draw(enemyCounter);
         window.draw(playerCounter);
+        window.draw(fpsCounter);
         
         window.display();
     }
