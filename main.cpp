@@ -36,11 +36,14 @@ bool ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect){
 
 int main()
 {
-    sf::ContextSettings settings;
-    settings.antialiasingLevel = 8;
+    sf::ContextSettings *settings;
+    settings=new sf::ContextSettings;
+    settings->antialiasingLevel = 8;
 
-    sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::Default, settings);
+    sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::Default, *settings);
     
+    delete settings;
+
     //font
     sf::Font digital;
     if(!digital.loadFromFile("digital.ttf")){
@@ -96,7 +99,7 @@ int main()
     fpsCounter.setPosition(5,-5);
     int fps=0;
     bool fpsVisible = 0;
-
+    
     while (window.isOpen())
     {
         dt=dtClock.restart();
