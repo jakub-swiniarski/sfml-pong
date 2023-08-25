@@ -49,7 +49,7 @@ int main()
 
     //font
     sf::Font digital;
-    if(!digital.loadFromFile("digital.ttf")){
+    if(!digital.loadFromFile("assets/digital.ttf")){
         window.close();
     }
 
