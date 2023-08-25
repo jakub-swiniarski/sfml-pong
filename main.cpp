@@ -96,7 +96,7 @@ int main()
     sf::Text fpsCounter;
     fpsCounter.setFont(digital);
     fpsCounter.setString("0");
-    fpsCounter.setCharacterSize(0);
+    fpsCounter.setCharacterSize(36);
     fpsCounter.setFillColor(sf::Color::White);
     fpsCounter.setPosition(5,-5);
     short fps=0;
@@ -119,12 +119,6 @@ int main()
                 }    
                 else if(event.key.code==sf::Keyboard::F1){
                     fpsVisible=!fpsVisible;
-                    if(fpsVisible){
-                        fpsCounter.setCharacterSize(36);
-                    }
-                    else{
-                        fpsCounter.setCharacterSize(0);
-                    } 
                 }
             }
         }
@@ -210,7 +204,9 @@ int main()
         //text
         window.draw(enemyCounter);
         window.draw(playerCounter);
-        window.draw(fpsCounter);
+        if(fpsVisible){
+            window.draw(fpsCounter); 
+        } 
         
         window.display();
     }
