@@ -12,7 +12,6 @@
 
 #include <SFML/System/Time.hpp>
 
-
 float speedX=240;
 float speedY=240;
 
@@ -70,7 +69,7 @@ int main()
     sf::RectangleShape enemy(sf::Vector2f(20.f, 100.f));
     enemy.setFillColor(sf::Color::White);
     enemy.setPosition(100.f,720.f/2.f-enemy.getSize().y/2);
-    int enemyPoints=0;
+    short enemyPoints=0;
     sf::Text enemyCounter;
     enemyCounter.setFont(digital);
     enemyCounter.setString("0");
@@ -82,7 +81,7 @@ int main()
     sf::RectangleShape player(sf::Vector2f(20.f, 100.f));
     player.setFillColor(sf::Color::White);
     player.setPosition(1280.f-player.getSize().x-100.f,720.f/2.f-player.getSize().y/2); 
-    int playerPoints=0;
+    short playerPoints=0;
     sf::Text playerCounter;
     playerCounter.setFont(digital);
     playerCounter.setString("0");
@@ -100,7 +99,7 @@ int main()
     fpsCounter.setCharacterSize(0);
     fpsCounter.setFillColor(sf::Color::White);
     fpsCounter.setPosition(5,-5);
-    int fps=0;
+    short fps=0;
     bool fpsVisible = 0;
     
     while (window.isOpen())
