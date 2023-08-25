@@ -1,11 +1,17 @@
-#include <SFML/Audio/Sound.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/System/Time.hpp>
-#include <SFML/Audio.hpp>
 #include <SFML/Window/Keyboard.hpp>
-#include <string>
-#include <cmath>
+#include <SFML/Window/Event.hpp>
+#include <SFML/Window/ContextSettings.hpp>
+
+#include <SFML/Graphics/CircleShape.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Text.hpp>
+
+#include <SFML/Audio/SoundBuffer.hpp>
+#include <SFML/Audio/Sound.hpp>
+
+#include <SFML/System/Time.hpp>
+
 
 float speedX=240;
 float speedY=240;
@@ -36,13 +42,10 @@ bool ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect){
 
 int main()
 {
-    sf::ContextSettings *settings;
-    settings=new sf::ContextSettings;
-    settings->antialiasingLevel = 8;
+    sf::ContextSettings settings;
+    settings.antialiasingLevel = 8;
 
-    sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::Default, *settings);
-    
-    delete settings;
+    sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::Default, settings);
 
     //font
     sf::Font digital;
