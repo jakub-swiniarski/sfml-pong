@@ -4,5 +4,10 @@ pong: main.o
 main.o: main.cpp
 	g++ -c main.cpp
 
+.PHONY: clean run
+
 clean:
 	rm *.o pong
+
+run:
+	./pong
