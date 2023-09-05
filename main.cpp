@@ -44,7 +44,7 @@ int main()
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
 
-    sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::Default, settings);
+    sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::Fullscreen, settings);
 
     //font
     sf::Font digital;
