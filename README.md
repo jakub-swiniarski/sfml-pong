@@ -10,11 +10,11 @@
 - git,
 - make.
 ### Compile & install
-git clone https://github.com/jakub-swiniarski/sfml-pong.git
-cd sfml-pong
-sudo make install
+git clone https://github.com/jakub-swiniarski/sfml-pong.git <br/>
+cd sfml-pong <br/> 
+sudo make install 
 ### How to uninstall?
-cd sfml-pong
+cd sfml-pong <br/> 
 sudo make uninstall
 
 ## Controls
