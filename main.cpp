@@ -12,8 +12,8 @@
 
 #include <SFML/System/Time.hpp>
 
-float speedX=240;
-float speedY=240;
+u_int8_t speedX=240;
+u_int8_t speedY=240;
 
 bool ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect){
     if(ball.getPosition().y<=rect.getPosition().y+rect.getSize().y && ball.getPosition().y+ball.getRadius()>=rect.getPosition().y){
@@ -71,7 +71,7 @@ int main()
     sf::RectangleShape enemy(sf::Vector2f(20.f, 100.f));
     enemy.setFillColor(sf::Color::White);
     enemy.setPosition(100.f,720.f/2.f-enemy.getSize().y/2);
-    short enemyPoints=0;
+    u_int8_t enemyPoints=0;
     sf::Text enemyCounter;
     enemyCounter.setFont(digital);
     enemyCounter.setString("0");
@@ -83,7 +83,7 @@ int main()
     sf::RectangleShape player(sf::Vector2f(20.f, 100.f));
     player.setFillColor(sf::Color::White);
     player.setPosition(1280.f-player.getSize().x-100.f,720.f/2.f-player.getSize().y/2); 
-    short playerPoints=0;
+    u_int8_t playerPoints=0;
     sf::Text playerCounter;
     playerCounter.setFont(digital);
     playerCounter.setString("0");
