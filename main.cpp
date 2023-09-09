@@ -48,14 +48,16 @@ int main()
 
     //font
     sf::Font digital;
-    if(!digital.loadFromFile("assets/digital.ttf")){
+    if(!digital.loadFromFile("/usr/share/assets_pong/digital.ttf")){ 
+    //if(!digital.loadFromFile("assets/digital.ttf")){
         window.close();
     }
 
     //sound
     sf::SoundBuffer popBuffer;
-    if(!popBuffer.loadFromFile("assets/pop.wav")){
-        window.close();
+    if(!popBuffer.loadFromFile("/usr/share/assets_pong/pop.wav")){ 
+    //if(!popBuffer.loadFromFile("assets/pop.wav")){ 
+        window.close(); 
     }
     sf::Sound popSound;
     popSound.setBuffer(popBuffer);

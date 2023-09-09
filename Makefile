@@ -4,10 +4,18 @@ pong: main.o
 main.o: main.cpp
 	g++ -c main.cpp
 
-.PHONY: clean run
+.PHONY: clean run install uninstall
 
 clean:
 	rm *.o pong
 
 run:
 	./pong
+
+install: pong assets_pong/
+	cp pong /usr/bin/
+	cp -r assets_pong /usr/share/
+
+uninstall:
+	rm /usr/bin/pong
+	rm -rf /usr/share/assets_pong
