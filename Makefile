@@ -9,7 +9,7 @@ main.o: main.cpp
 clean:
 	rm *.o pong
 
-run:
+run: pong
 	./pong
 
 install: pong assets_pong/
