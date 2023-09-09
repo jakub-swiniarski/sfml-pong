@@ -12,8 +12,8 @@
 
 #include <SFML/System/Time.hpp>
 
-u_int8_t speedX=240;
-u_int8_t speedY=240;
+short speedX=240;
+short speedY=240;
 
 bool ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect){
     if(ball.getPosition().y<=rect.getPosition().y+rect.getSize().y && ball.getPosition().y+ball.getRadius()>=rect.getPosition().y){
