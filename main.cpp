@@ -79,7 +79,7 @@ int main()
     enemyCounter.setString("0");
     enemyCounter.setCharacterSize(120);
     enemyCounter.setFillColor(sf::Color::White);
-    enemyCounter.setPosition(300,0);
+    enemyCounter.setPosition(300.f,0.f);
 
     //player
     sf::RectangleShape player(sf::Vector2f(20.f, 100.f));
@@ -91,7 +91,7 @@ int main()
     playerCounter.setString("0");
     playerCounter.setCharacterSize(120);
     playerCounter.setFillColor(sf::Color::White);
-    playerCounter.setPosition(1280-300-120,0);
+    playerCounter.setPosition(1280.f-300.f-120.f,0.f);
 
     sf::Clock dtClock;
     sf::Time dt;
@@ -102,7 +102,7 @@ int main()
     fpsCounter.setString("0");
     fpsCounter.setCharacterSize(36);
     fpsCounter.setFillColor(sf::Color::White);
-    fpsCounter.setPosition(5,-5);
+    fpsCounter.setPosition(5.f,-5.f);
     short fps=0;
     bool fpsVisible = 0;
     
@@ -129,22 +129,22 @@ int main()
  
         //player movement
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-            player.move(0.f,-192*dt.asSeconds());
+            player.move(0.f,-192.f*dt.asSeconds());
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-            player.move(0.f,192*dt.asSeconds());
+            player.move(0.f,192.f*dt.asSeconds());
         }
 
         //border check for player
         if(player.getPosition().y>=720.f-player.getSize().y){
             player.setPosition(player.getPosition().x,720.f-player.getSize().y);
         }
-        else if(player.getPosition().y<=0){
-            player.setPosition(player.getPosition().x,0);
+        else if(player.getPosition().y<=0.f){
+            player.setPosition(player.getPosition().x,0.f);
         }
         
         //ball border check
-        if(ball.getPosition().x<=0){
+        if(ball.getPosition().x<=0.f){
             //player wins
             playerPoints++;
             ball.setPosition(1280.f/2.f-ball.getRadius(),720.f/2.f-ball.getRadius());
@@ -152,7 +152,7 @@ int main()
             //update score
             playerCounter.setString(std::to_string(playerPoints));
         }
-        else if(ball.getPosition().x>=1280-ball.getRadius()){
+        else if(ball.getPosition().x>=1280.f-ball.getRadius()){
             //enemy wins
             enemyPoints++;
             ball.setPosition(1280.f/2.f-ball.getRadius(),720.f/2.f-ball.getRadius());
@@ -160,13 +160,13 @@ int main()
             //update score
             enemyCounter.setString(std::to_string(enemyPoints));
         }
-        if(ball.getPosition().y<=0){
+        if(ball.getPosition().y<=0.f){
             popSound.play();
-            speedY*=-1;
+            speedY*=-1.f;
         }
-        else if(ball.getPosition().y>=720-ball.getRadius()){
+        else if(ball.getPosition().y>=720.f-ball.getRadius()){
             popSound.play(); 
-            speedY*=-1;
+            speedY*=-1.f;
         } 
 
         //ball movement
@@ -181,19 +181,19 @@ int main()
         }
 
         //enemy movement
-        if(enemy.getPosition().y+enemy.getSize().y/2>ball.getPosition().y+ball.getRadius()/2){
-            enemy.move(0.f,-192*dt.asSeconds());
+        if(enemy.getPosition().y+enemy.getSize().y/2.f>ball.getPosition().y+ball.getRadius()/2.f){
+            enemy.move(0.f,-192.f*dt.asSeconds());
         }
         else{
-            enemy.move(0.f,192*dt.asSeconds());
+            enemy.move(0.f,192.f*dt.asSeconds());
         }
         
         //border check for enemy
-        if(enemy.getPosition().y<=0){
-            enemy.setPosition(enemy.getPosition().x,0);
+        if(enemy.getPosition().y<=0.f){
+            enemy.setPosition(enemy.getPosition().x,0.f);
         }
-        else if(enemy.getPosition().y+enemy.getSize().y>=720){
-            enemy.setPosition(enemy.getPosition().x,720-enemy.getSize().y);
+        else if(enemy.getPosition().y+enemy.getSize().y>=720.f){
+            enemy.setPosition(enemy.getPosition().x,720.f-enemy.getSize().y);
         }
 
         fps=1/dt.asSeconds();
