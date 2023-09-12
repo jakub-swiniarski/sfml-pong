@@ -12,6 +12,8 @@
 
 #include <SFML/System/Time.hpp>
 
+#include <string>
+
 short speedX=240;
 short speedY=240;
 
@@ -46,17 +48,17 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::Fullscreen, settings);
 
+    std::string filepath="assets_pong/";
+
     //font
     sf::Font digital;
-    if(!digital.loadFromFile("/usr/share/assets_pong/digital.ttf")){ 
-    //if(!digital.loadFromFile("assets/digital.ttf")){
+    if(!digital.loadFromFile(filepath+"digital.ttf")){ 
         window.close();
     }
 
     //sound
     sf::SoundBuffer popBuffer;
-    if(!popBuffer.loadFromFile("/usr/share/assets_pong/pop.wav")){ 
-    //if(!popBuffer.loadFromFile("assets/pop.wav")){ 
+    if(!popBuffer.loadFromFile(filepath+"pop.wav")){ 
         window.close(); 
     }
     sf::Sound popSound;
