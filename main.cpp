@@ -103,7 +103,7 @@ int main()
     fpsCounter.setCharacterSize(36);
     fpsCounter.setFillColor(sf::Color::White);
     fpsCounter.setPosition(5.f,-5.f);
-    short fps=0;
+    unsigned short fps=0;
     bool fpsVisible = 0;
     
     while (window.isOpen())
