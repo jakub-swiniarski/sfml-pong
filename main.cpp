@@ -48,7 +48,7 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::Fullscreen, settings);
 
-    std::string filepath="assets_pong/";
+    std::string filepath="/usr/bin/assets_pong/";
 
     //font
     sf::Font digital;
