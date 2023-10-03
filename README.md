@@ -17,7 +17,7 @@ sudo make install
 Run this command: pong
 ### How to uninstall?
 Go inside the cloned repository and run: <br/>
-sudo make uninstall
+sudo make clean uninstall
 
 ## Controls
 Up arrow - move up <br/>
