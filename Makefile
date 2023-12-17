@@ -13,9 +13,9 @@ run: pong
 	./pong
 
 install: pong assets_pong/
-	cp pong /usr/bin/
-	cp -r assets_pong /usr/share/
+	cp pong /usr/local/bin/
+	cp -r assets_pong /usr/local/share/
 
 uninstall:
-	rm /usr/bin/pong
-	rm -rf /usr/share/assets_pong
+	rm /usr/local/bin/pong
+	rm -rf /usr/local/share/assets_pong
