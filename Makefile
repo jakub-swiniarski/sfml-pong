@@ -12,9 +12,10 @@ clean:
 run: pong
 	./pong
 
-install: pong assets_pong/
-	cp pong /usr/local/bin/
-	cp -r assets_pong /usr/local/share/
+install: pong res
+	mkdir -p /usr/local/share/pong/
+	cp pong /usr/local/bin
+	cp res/* /usr/local/share/pong/
 
 uninstall:
 	rm /usr/local/bin/pong
