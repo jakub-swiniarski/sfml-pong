@@ -29,15 +29,6 @@ bool ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect){
             return 1;
         }    
     }
-    /*if(ball.getPosition().x+ball.getRadius()>rect.getPosition().x && ball.getPosition().x<rect.getPosition().x+rect.getSize().x){
-        //check vertical collisions
-        if(ball.getPosition().y<=rect.getPosition().y+rect.getSize().y && ball.getPosition().y>rect.getPosition().y+rect.getSize().y/2){
-            speedY*=-1;
-        }
-        else if(ball.getPosition().y-ball.getRadius()<=rect.getPosition().y+rect.getSize().y && ball.getPosition().y-ball.getRadius()>rect.getPosition().y-rect.getSize().y){
-            speedY*=-1;
-        }
-    }*/
     return 0;
 }
 
@@ -48,7 +39,7 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::Fullscreen, settings);
 
-    std::string filepath="/usr/share/assets_pong/";
+    std::string filepath="/usr/local/share/pong/";
 
     //font
     sf::Font digital;
