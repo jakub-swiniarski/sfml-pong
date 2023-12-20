@@ -14,8 +14,8 @@
 
 #include <string>
 
-short speedX=240;
-short speedY=240;
+int speedX=240;
+int speedY=240;
 
 bool ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect){
     if(ball.getPosition().y<=rect.getPosition().y+rect.getSize().y && ball.getPosition().y+ball.getRadius()>=rect.getPosition().y){
@@ -64,7 +64,7 @@ int main()
     sf::RectangleShape enemy(sf::Vector2f(20.f, 100.f));
     enemy.setFillColor(sf::Color::White);
     enemy.setPosition(100.f,720.f/2.f-enemy.getSize().y/2);
-    u_int8_t enemyPoints=0;
+    int enemyPoints=0;
     sf::Text enemyCounter;
     enemyCounter.setFont(digital);
     enemyCounter.setString("0");
@@ -76,7 +76,7 @@ int main()
     sf::RectangleShape player(sf::Vector2f(20.f, 100.f));
     player.setFillColor(sf::Color::White);
     player.setPosition(1280.f-player.getSize().x-100.f,720.f/2.f-player.getSize().y/2); 
-    u_int8_t playerPoints=0;
+    int playerPoints=0;
     sf::Text playerCounter;
     playerCounter.setFont(digital);
     playerCounter.setString("0");
@@ -94,7 +94,7 @@ int main()
     fpsCounter.setCharacterSize(36);
     fpsCounter.setFillColor(sf::Color::White);
     fpsCounter.setPosition(5.f,-5.f);
-    unsigned short fps=0;
+    int fps=0;
     bool fpsVisible = 0;
     
     while (window.isOpen())
