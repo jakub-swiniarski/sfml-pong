@@ -19,4 +19,4 @@ install: pong res
 
 uninstall:
 	rm /usr/local/bin/pong
-	rm -rf /usr/local/share/assets_pong
+	rm -rf /usr/local/share/pong
