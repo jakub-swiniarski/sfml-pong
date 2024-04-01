@@ -37,9 +37,9 @@ int main()
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
 
-    sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::Fullscreen, settings);
+    sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::None, settings);
 
-    std::string filepath="/usr/local/share/pong/";
+    std::string filepath="res/";
 
     //font
     sf::Font digital;
