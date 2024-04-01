@@ -14,6 +14,8 @@
 
 #include <string>
 
+#include "config.hpp"
+
 int speedX=240;
 int speedY=240;
 
@@ -57,7 +59,7 @@ int main()
 
     //ball
     sf::CircleShape ball(10.f);
-    ball.setFillColor(sf::Color::White);
+    ball.setFillColor(BALL_COLOR);
     ball.setPosition(1280.f/2.f-ball.getRadius(),720.f/2.f-ball.getRadius());    
 
     //enemy
