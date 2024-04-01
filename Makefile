@@ -1,8 +1,12 @@
-pong: main.o
-	g++ main.o -o pong -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+SRC = $(wildcard *.cpp)
+HDR = $(wildcard *.h)
+OBJ = $(SRC:.c=.o)
 
-main.o: main.cpp
-	g++ -c main.cpp
+pong: $(OBJ)
+	g++ -o $@ $(OBJ) -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+
+$(OBJ): $(SRC) $(HDR)
+	gcc -c $(SRC) -O2
 
 .PHONY: clean run install uninstall
 
@@ -14,7 +18,7 @@ run: pong
 
 install: pong res
 	mkdir -p /usr/local/share/pong/
-	cp pong /usr/local/bin
+	cp pong /usr/local/bin/
 	cp res/* /usr/local/share/pong/
 
 uninstall:
