@@ -11,6 +11,7 @@
 #include <SFML/Window/WindowBase.hpp>
 #include <string>
 
+#include "Ball.hpp"
 #include "Paddle.hpp"
 
 #include "config.hpp"
@@ -49,13 +50,11 @@ int main(void) {
     sf::Sound popSound;
     popSound.setBuffer(popBuffer);
 
-    sf::CircleShape ball(10.f);
-    ball.setFillColor(BALL_COLOR);
-    ball.setPosition(1280.f / 2.f - ball.getRadius(), 720.f / 2.f - ball.getRadius());    
+    Ball ball(1280.f / 2.f - 10.f, 720.f / 2.f - 10.f); /* TODO: don't hardcode -10.f (radius) */
 
     Paddle enemy(100.f, 720.f / 2.f - enemy.getSize().y / 2);
     enemy.score_counter.setFont(font);
-    Paddle player(1280.f - player.getSize().x - 100.f, 720.f / 2.f - player.getSize().y / 2);
+    Paddle player(1280.f - player.getSize().x - 100.f, 720.f / 2.f - player.getSize().y / 2); /* TODO: don't use play in initialization */
     player.score_counter.setFont(font);
 
     sf::Clock dtClock;
@@ -148,6 +147,9 @@ int main(void) {
 
         fps = 1 / dt.asSeconds();
         fpsCounter.setString(std::to_string(fps) + " FPS");
+
+        ball.speed_x = speedX;
+        ball.speed_y = speedY;
 
         window.clear();
         
