@@ -16,22 +16,6 @@
 
 #include "config.hpp"
 
-int speedX = 240;
-int speedY = 240;
-
-bool ballRectangleCollision(sf::CircleShape ball, sf::RectangleShape rect) {
-    if (ball.getPosition().y <= rect.getPosition().y + rect.getSize().y && ball.getPosition().y + ball.getRadius() >= rect.getPosition().y) {
-        if (ball.getPosition().x + ball.getRadius() >= rect.getPosition().x && ball.getPosition().x + ball.getRadius() < rect.getPosition().x + rect.getSize().x / 2) {
-            speedX *= -1;
-            return 1;
-        } else if (ball.getPosition().x <= rect.getPosition().x + rect.getSize().x && ball.getPosition().x > rect.getPosition().x + rect.getSize().x / 2) {
-            speedX *= -1;
-            return 1;
-        }    
-    }
-    return 0;
-}
-
 int main(void) {
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
@@ -117,20 +101,20 @@ int main(void) {
         }
         if (ball.getPosition().y <= 0.f) {
             popSound.play();
-            speedY *= -1.f;
+            ball.speed_y *= -1.f;
         }
         else if (ball.getPosition().y >= 720.f - ball.getRadius()) {
             popSound.play(); 
-            speedY *= -1.f;
+            ball.speed_y *= -1.f;
         } 
 
         //ball movement
-        ball.move(speedX * dt.asSeconds(), speedY * dt.asSeconds()); 
+        ball.move(ball.speed_x * dt.asSeconds(), ball.speed_y * dt.asSeconds()); 
 
         //ball collisions with entities
-        if (ballRectangleCollision(ball, enemy))
+        if (enemy.ball_collision_check(ball))
             popSound.play();
-        else if (ballRectangleCollision(ball, player))
+        else if (player.ball_collision_check(ball))
             popSound.play();
 
         //enemy movement
@@ -147,9 +131,6 @@ int main(void) {
 
         fps = 1 / dt.asSeconds();
         fpsCounter.setString(std::to_string(fps) + " FPS");
-
-        ball.speed_x = speedX;
-        ball.speed_y = speedY;
 
         window.clear();
         
