@@ -1,8 +1,7 @@
 #pragma once
 
-class Paddle {
+class Paddle: public sf::RectangleShape {
 public: /* TODO: THIS IS A TEMPORARY SOLUTION */
-    sf::RectangleShape shape;
     int score;
     sf::Text score_counter;
 

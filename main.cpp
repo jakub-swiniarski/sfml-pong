@@ -53,9 +53,9 @@ int main(void) {
     ball.setFillColor(BALL_COLOR);
     ball.setPosition(1280.f / 2.f - ball.getRadius(), 720.f / 2.f - ball.getRadius());    
 
-    Paddle enemy(100.f, 720.f / 2.f - enemy.shape.getSize().y / 2);
+    Paddle enemy(100.f, 720.f / 2.f - enemy.getSize().y / 2);
     enemy.score_counter.setFont(font);
-    Paddle player(1280.f - player.shape.getSize().x - 100.f, 720.f / 2.f - player.shape.getSize().y / 2);
+    Paddle player(1280.f - player.getSize().x - 100.f, 720.f / 2.f - player.getSize().y / 2);
     player.score_counter.setFont(font);
 
     sf::Clock dtClock;
@@ -89,15 +89,15 @@ int main(void) {
  
         //player movement
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-            player.shape.move(0.f, -192.f * dt.asSeconds());
+            player.move(0.f, -192.f * dt.asSeconds());
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-            player.shape.move(0.f, 192.f * dt.asSeconds());
+            player.move(0.f, 192.f * dt.asSeconds());
 
         //border check for player
-        if (player.shape.getPosition().y >= 720.f - player.shape.getSize().y)
-            player.shape.setPosition(player.shape.getPosition().x, 720.f - player.shape.getSize().y);
-        else if (player.shape.getPosition().y <= 0.f)
-            player.shape.setPosition(player.shape.getPosition().x, 0.f);
+        if (player.getPosition().y >= 720.f - player.getSize().y)
+            player.setPosition(player.getPosition().x, 720.f - player.getSize().y);
+        else if (player.getPosition().y <= 0.f)
+            player.setPosition(player.getPosition().x, 0.f);
         
         //ball border check
         if (ball.getPosition().x <= 0.f) {
@@ -129,22 +129,22 @@ int main(void) {
         ball.move(speedX * dt.asSeconds(), speedY * dt.asSeconds()); 
 
         //ball collisions with entities
-        if (ballRectangleCollision(ball, enemy.shape))
+        if (ballRectangleCollision(ball, enemy))
             popSound.play();
-        else if (ballRectangleCollision(ball, player.shape))
+        else if (ballRectangleCollision(ball, player))
             popSound.play();
 
         //enemy movement
-        if (enemy.shape.getPosition().y + enemy.shape.getSize().y / 2.f > ball.getPosition().y + ball.getRadius() / 2.f)
-            enemy.shape.move(0.f, -192.f * dt.asSeconds());
+        if (enemy.getPosition().y + enemy.getSize().y / 2.f > ball.getPosition().y + ball.getRadius() / 2.f)
+            enemy.move(0.f, -192.f * dt.asSeconds());
         else
-            enemy.shape.move(0.f, 192.f * dt.asSeconds());
+            enemy.move(0.f, 192.f * dt.asSeconds());
         
         //border check for enemy
-        if (enemy.shape.getPosition().y <= 0.f)
-            enemy.shape.setPosition(enemy.shape.getPosition().x, 0.f);
-        else if (enemy.shape.getPosition().y + enemy.shape.getSize().y >= 720.f)
-            enemy.shape.setPosition(enemy.shape.getPosition().x, 720.f - enemy.shape.getSize().y);
+        if (enemy.getPosition().y <= 0.f)
+            enemy.setPosition(enemy.getPosition().x, 0.f);
+        else if (enemy.getPosition().y + enemy.getSize().y >= 720.f)
+            enemy.setPosition(enemy.getPosition().x, 720.f - enemy.getSize().y);
 
         fps = 1 / dt.asSeconds();
         fpsCounter.setString(std::to_string(fps) + " FPS");
@@ -152,8 +152,8 @@ int main(void) {
         window.clear();
         
         window.draw(ball);
-        window.draw(enemy.shape);
-        window.draw(player.shape);
+        window.draw(enemy);
+        window.draw(player);
 
         //text
         window.draw(enemy.score_counter);
