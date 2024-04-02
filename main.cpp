@@ -1,18 +1,14 @@
-#include <SFML/Graphics/Font.hpp>
-#include <SFML/Window/Keyboard.hpp>
-#include <SFML/Window/Event.hpp>
-#include <SFML/Window/ContextSettings.hpp>
-
+#include <SFML/Audio/Sound.hpp>
+#include <SFML/Audio/SoundBuffer.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
+#include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Text.hpp>
-
-#include <SFML/Audio/SoundBuffer.hpp>
-#include <SFML/Audio/Sound.hpp>
-
-#include <SFML/System/Time.hpp>
-
+#include <SFML/Window/ContextSettings.hpp>
+#include <SFML/Window/Event.hpp>
+#include <SFML/Window/VideoMode.hpp>
+#include <SFML/Window/WindowBase.hpp>
 #include <string>
 
 #include "Paddle.hpp"
