@@ -1,3 +1,4 @@
+#include <SFML/Graphics/Font.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/ContextSettings.hpp>
@@ -13,6 +14,8 @@
 #include <SFML/System/Time.hpp>
 
 #include <string>
+
+#include "Paddle.hpp"
 
 #include "config.hpp"
 
@@ -44,16 +47,14 @@ int main()
     std::string filepath="res/";
 
     //font
-    sf::Font digital;
-    if(!digital.loadFromFile(filepath+"digital.ttf")){ 
+    sf::Font font;
+    if(!font.loadFromFile(filepath+"font.ttf"))
         window.close();
-    }
 
     //sound
     sf::SoundBuffer popBuffer;
-    if(!popBuffer.loadFromFile(filepath+"pop.wav")){ 
+    if(!popBuffer.loadFromFile(filepath+"pop.wav"))
         window.close(); 
-    }
     sf::Sound popSound;
     popSound.setBuffer(popBuffer);
 
@@ -62,36 +63,14 @@ int main()
     ball.setFillColor(BALL_COLOR);
     ball.setPosition(1280.f/2.f-ball.getRadius(),720.f/2.f-ball.getRadius());    
 
-    //enemy
-    sf::RectangleShape enemy(sf::Vector2f(20.f, 100.f));
-    enemy.setFillColor(sf::Color::White);
-    enemy.setPosition(100.f,720.f/2.f-enemy.getSize().y/2);
-    int enemyPoints=0;
-    sf::Text enemyCounter;
-    enemyCounter.setFont(digital);
-    enemyCounter.setString("0");
-    enemyCounter.setCharacterSize(120);
-    enemyCounter.setFillColor(sf::Color::White);
-    enemyCounter.setPosition(300.f,0.f);
-
-    //player
-    sf::RectangleShape player(sf::Vector2f(20.f, 100.f));
-    player.setFillColor(sf::Color::White);
-    player.setPosition(1280.f-player.getSize().x-100.f,720.f/2.f-player.getSize().y/2); 
-    int playerPoints=0;
-    sf::Text playerCounter;
-    playerCounter.setFont(digital);
-    playerCounter.setString("0");
-    playerCounter.setCharacterSize(120);
-    playerCounter.setFillColor(sf::Color::White);
-    playerCounter.setPosition(1280.f-300.f-120.f,0.f);
+    Paddle enemy(100.f, 720.f / 2.f - enemy.shape.getSize().y / 2, font);
+    Paddle player(1280.f - player.shape.getSize().x - 100.f, 720.f / 2.f - player.shape.getSize().y / 2, font);
 
     sf::Clock dtClock;
     sf::Time dt;
     
-    //fps counter - turn this into a class
     sf::Text fpsCounter;
-    fpsCounter.setFont(digital);
+    fpsCounter.setFont(font);
     fpsCounter.setString("0");
     fpsCounter.setCharacterSize(36);
     fpsCounter.setFillColor(sf::Color::White);
@@ -111,47 +90,41 @@ int main()
 
             //keyboard input - single keypress
             if(event.type==sf::Event::EventType::KeyPressed){
-                if(event.key.code==sf::Keyboard::Escape){
+                if(event.key.code==sf::Keyboard::Escape)
                     window.close();
-                }    
-                else if(event.key.code==sf::Keyboard::F1){
+                else if(event.key.code==sf::Keyboard::F1)
                     fpsVisible=!fpsVisible;
-                }
             }
         }
  
         //player movement
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-            player.move(0.f,-192.f*dt.asSeconds());
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-            player.move(0.f,192.f*dt.asSeconds());
-        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+            player.shape.move(0.f,-192.f*dt.asSeconds());
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+            player.shape.move(0.f,192.f*dt.asSeconds());
 
         //border check for player
-        if(player.getPosition().y>=720.f-player.getSize().y){
-            player.setPosition(player.getPosition().x,720.f-player.getSize().y);
-        }
-        else if(player.getPosition().y<=0.f){
-            player.setPosition(player.getPosition().x,0.f);
-        }
+        if(player.shape.getPosition().y>=720.f-player.shape.getSize().y)
+            player.shape.setPosition(player.shape.getPosition().x,720.f-player.shape.getSize().y);
+        else if(player.shape.getPosition().y<=0.f)
+            player.shape.setPosition(player.shape.getPosition().x,0.f);
         
         //ball border check
         if(ball.getPosition().x<=0.f){
             //player wins
-            playerPoints++;
+            player.score++;
             ball.setPosition(1280.f/2.f-ball.getRadius(),720.f/2.f-ball.getRadius());
 
             //update score
-            playerCounter.setString(std::to_string(playerPoints));
+            //player.score_counter.setString(std::to_string(player.score));
         }
         else if(ball.getPosition().x>=1280.f-ball.getRadius()){
             //enemy wins
-            enemyPoints++;
+            enemy.score++;
             ball.setPosition(1280.f/2.f-ball.getRadius(),720.f/2.f-ball.getRadius());
 
             //update score
-            enemyCounter.setString(std::to_string(enemyPoints));
+            //enemy.score_counter.setString(std::to_string(enemy.score));
         }
         if(ball.getPosition().y<=0.f){
             popSound.play();
@@ -166,28 +139,22 @@ int main()
         ball.move(speedX*dt.asSeconds(),speedY*dt.asSeconds()); 
 
         //ball collisions with entities
-        if(ballRectangleCollision(ball,enemy)){
+        if(ballRectangleCollision(ball, enemy.shape))
             popSound.play();
-        }
-        else if(ballRectangleCollision(ball,player)){
+        else if(ballRectangleCollision(ball,player.shape))
             popSound.play();
-        }
 
         //enemy movement
-        if(enemy.getPosition().y+enemy.getSize().y/2.f>ball.getPosition().y+ball.getRadius()/2.f){
-            enemy.move(0.f,-192.f*dt.asSeconds());
-        }
-        else{
-            enemy.move(0.f,192.f*dt.asSeconds());
-        }
+        if(enemy.shape.getPosition().y+enemy.shape.getSize().y/2.f>ball.getPosition().y+ball.getRadius()/2.f)
+            enemy.shape.move(0.f,-192.f*dt.asSeconds());
+        else
+            enemy.shape.move(0.f,192.f*dt.asSeconds());
         
         //border check for enemy
-        if(enemy.getPosition().y<=0.f){
-            enemy.setPosition(enemy.getPosition().x,0.f);
-        }
-        else if(enemy.getPosition().y+enemy.getSize().y>=720.f){
-            enemy.setPosition(enemy.getPosition().x,720.f-enemy.getSize().y);
-        }
+        if(enemy.shape.getPosition().y<=0.f)
+            enemy.shape.setPosition(enemy.shape.getPosition().x,0.f);
+        else if(enemy.shape.getPosition().y+enemy.shape.getSize().y>=720.f)
+            enemy.shape.setPosition(enemy.shape.getPosition().x,720.f-enemy.shape.getSize().y);
 
         fps=1/dt.asSeconds();
         fpsCounter.setString(std::to_string(fps)+" FPS");
@@ -195,15 +162,14 @@ int main()
         window.clear();
         
         window.draw(ball);
-        window.draw(enemy);
-        window.draw(player);
+        window.draw(enemy.shape);
+        window.draw(player.shape);
 
         //text
-        window.draw(enemyCounter);
-        window.draw(playerCounter);
-        if(fpsVisible){
+        //window.draw(enemy.score_counter);
+        //window.draw(player.score_counter);
+        if(fpsVisible)
             window.draw(fpsCounter); 
-        } 
         
         window.display();
     }
