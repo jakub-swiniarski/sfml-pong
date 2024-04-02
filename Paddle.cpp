@@ -7,9 +7,9 @@
 #include "Paddle.hpp"
 
 Paddle::Paddle(float x, float y) {
-    shape.setSize(sf::Vector2f(20.f, 100.f));
-    shape.setFillColor(sf::Color::White);
-    shape.setPosition(x, y); /* TODO: config.hpp screenwidth and screenheight */
+    setSize(sf::Vector2f(20.f, 100.f));
+    setFillColor(sf::Color::White);
+    setPosition(x, y); /* TODO: config.hpp screenwidth and screenheight */
 
     score = 0;
 
