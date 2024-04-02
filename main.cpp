@@ -83,7 +83,7 @@ int main(void) {
                 if (event.key.code == sf::Keyboard::Escape)
                     window.close();
                 else if (event.key.code == sf::Keyboard::F1)
-                    fpsVisible=!fpsVisible;
+                    fpsVisible = !fpsVisible;
             }
         }
  
