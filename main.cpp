@@ -63,8 +63,10 @@ int main()
     ball.setFillColor(BALL_COLOR);
     ball.setPosition(1280.f/2.f-ball.getRadius(),720.f/2.f-ball.getRadius());    
 
-    Paddle enemy(100.f, 720.f / 2.f - enemy.shape.getSize().y / 2, font);
-    Paddle player(1280.f - player.shape.getSize().x - 100.f, 720.f / 2.f - player.shape.getSize().y / 2, font);
+    Paddle enemy(100.f, 720.f / 2.f - enemy.shape.getSize().y / 2);
+    enemy.score_counter.setFont(font);
+    Paddle player(1280.f - player.shape.getSize().x - 100.f, 720.f / 2.f - player.shape.getSize().y / 2);
+    player.score_counter.setFont(font);
 
     sf::Clock dtClock;
     sf::Time dt;
@@ -116,7 +118,7 @@ int main()
             ball.setPosition(1280.f/2.f-ball.getRadius(),720.f/2.f-ball.getRadius());
 
             //update score
-            //player.score_counter.setString(std::to_string(player.score));
+            player.score_counter.setString(std::to_string(player.score));
         }
         else if(ball.getPosition().x>=1280.f-ball.getRadius()){
             //enemy wins
@@ -124,7 +126,7 @@ int main()
             ball.setPosition(1280.f/2.f-ball.getRadius(),720.f/2.f-ball.getRadius());
 
             //update score
-            //enemy.score_counter.setString(std::to_string(enemy.score));
+            enemy.score_counter.setString(std::to_string(enemy.score));
         }
         if(ball.getPosition().y<=0.f){
             popSound.play();
@@ -166,8 +168,8 @@ int main()
         window.draw(player.shape);
 
         //text
-        //window.draw(enemy.score_counter);
-        //window.draw(player.score_counter);
+        window.draw(enemy.score_counter);
+        window.draw(player.score_counter);
         if(fpsVisible)
             window.draw(fpsCounter); 
         

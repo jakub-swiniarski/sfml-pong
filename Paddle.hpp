@@ -6,5 +6,5 @@ public: /* TODO: THIS IS A TEMPORARY SOLUTION */
     int score;
     sf::Text score_counter;
 
-    Paddle(float x, float y, sf::Font font);
+    Paddle(float x, float y);
 };
