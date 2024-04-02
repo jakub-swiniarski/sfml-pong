@@ -19,7 +19,7 @@ Paddle::Paddle(float x, float y) {
     score_counter.setString("0");
     score_counter.setCharacterSize(120); /* TODO: put this in config.hpp */
     score_counter.setFillColor(sf::Color::White);
-    score_counter.setPosition(300.f, 0.f); /* TODO: both in the same place? interesting... */
+    score_counter.setPosition(x, 0.f); /* TODO: both in the same place? interesting... */
 }
 
 bool Paddle::ball_collision_check(Ball &ball) {
