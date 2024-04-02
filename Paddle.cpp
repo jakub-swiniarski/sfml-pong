@@ -1,9 +1,11 @@
+#include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/System/Vector2.hpp>
 
+#include "Ball.hpp"
 #include "Paddle.hpp"
 
 Paddle::Paddle(float x, float y) {
@@ -18,4 +20,15 @@ Paddle::Paddle(float x, float y) {
     score_counter.setCharacterSize(120); /* TODO: put this in config.hpp */
     score_counter.setFillColor(sf::Color::White);
     score_counter.setPosition(300.f, 0.f); /* TODO: both in the same place? interesting... */
+}
+
+bool Paddle::ball_collision_check(Ball &ball) {
+    if (ball.getPosition().y <= getPosition().y + getSize().y && ball.getPosition().y + ball.getRadius() >= getPosition().y) {
+        if (ball.getPosition().x + ball.getRadius() >= getPosition().x
+        && ball.getPosition().x <= getPosition().x + getSize().x) {
+            ball.speed_x *= -1;
+            return 1;
+        }
+    }
+    return 0;
 }
