@@ -29,5 +29,4 @@ sudo make clean uninstall
 ## Controls
 Up arrow - move up <br/>
 Down arrow - move down <br/>
-Escape - exit the game <br/>
-F1 - show/hide the FPS counter
+Escape - exit the game
