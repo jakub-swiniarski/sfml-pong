@@ -32,7 +32,7 @@ static sf::Font font;
 static Paddle player(SCREEN_WIDTH - player.getSize().x - 100.f, SCREEN_HEIGHT / 2.f - player.getSize().y / 2); /* TODO: don't use play in initialization */
 static sf::Sound pop_sound;
 static sf::SoundBuffer pop_buffer;
-static sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Pong", sf::Style::None);
+static sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Pong", sf::Style::None); /* TODO: fullscreen */
 
 /* constants */
 static const std::string FILEPATH = "res/";
@@ -60,10 +60,9 @@ void run(void) {
                 window.close();
 
             //keyboard input
-            if (event.type == sf::Event::EventType::KeyPressed) {
+            if (event.type == sf::Event::EventType::KeyPressed)
                 if (event.key.code == sf::Keyboard::Escape)
                     window.close();
-            }
         }
  
         //player movement
@@ -86,21 +85,18 @@ void run(void) {
             enemy.score_counter.setString(std::to_string(enemy.score));
             ball.speed_x = BALL_START_SPEED_X;
         }
-        if (ball.getPosition().y <= 0.f) {
+        if (ball.getPosition().y <= 0.f
+        || ball.getPosition().y >= SCREEN_HEIGHT - ball.getRadius()) {
             pop_sound.play();
             ball.speed_y *= -1.f;
-        } else if (ball.getPosition().y >= SCREEN_HEIGHT - ball.getRadius()) {
-            pop_sound.play(); 
-            ball.speed_y *= -1.f;
-        } 
+        }
 
         //ball movement
         ball.move(ball.speed_x * dt.asSeconds(), ball.speed_y * dt.asSeconds()); 
 
         //ball collisions with entities
-        if (enemy.ball_collision_check(ball))
-            pop_sound.play();
-        else if (player.ball_collision_check(ball))
+        if ((enemy.ball_collision_check(ball))
+        || player.ball_collision_check(ball))
             pop_sound.play();
 
         //enemy movement
@@ -120,13 +116,12 @@ void setup(void) {
 
     if (!font.loadFromFile(FILEPATH + "font.ttf"))
         window.close();
+    enemy.score_counter.setFont(font);
+    player.score_counter.setFont(font);
 
     if (!pop_buffer.loadFromFile(FILEPATH + "pop.wav"))
         window.close(); 
     pop_sound.setBuffer(pop_buffer);
-
-    enemy.score_counter.setFont(font);
-    player.score_counter.setFont(font);
 }
 
 int main(void) {
