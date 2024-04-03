@@ -18,6 +18,7 @@
 #include "config.hpp"
 
 /* function declarations */
+static void draw(void);
 static void run(void);
 static void setup(void);
 
@@ -36,7 +37,20 @@ static sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::None
 /* constants */
 static const std::string FILEPATH = "res/";
 
-/*function implementations */
+/* function implementations */
+void draw(void) {
+    window.clear();
+    
+    window.draw(ball);
+    window.draw(enemy);
+    window.draw(player);
+
+    window.draw(enemy.score_counter);
+    window.draw(player.score_counter);
+    
+    window.display();
+}
+
 void run(void) {
     while (window.isOpen()) {
         dt = dt_clock.restart();
@@ -105,16 +119,7 @@ void run(void) {
         else if (enemy.getPosition().y + enemy.getSize().y >= 720.f)
             enemy.setPosition(enemy.getPosition().x, 720.f - enemy.getSize().y);
 
-        window.clear();
-        
-        window.draw(ball);
-        window.draw(enemy);
-        window.draw(player);
-
-        window.draw(enemy.score_counter);
-        window.draw(player.score_counter);
-        
-        window.display();
+        draw();
     }
 }
 
