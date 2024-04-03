@@ -24,7 +24,7 @@ static void setup(void);
 
 /* variables */
 static Ball ball(1280.f / 2.f - 10.f, 720.f / 2.f - 10.f); /* TODO: don't hardcode -10.f (radius) */
-static sf::Time dt;
+static sf::Time dt; /* TODO: this should be a float + simplify dt mechanism */
 static sf::Clock dt_clock;
 static Paddle enemy(100.f, 720.f / 2.f - enemy.getSize().y / 2);
 static sf::Event event;
