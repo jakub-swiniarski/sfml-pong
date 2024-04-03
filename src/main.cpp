@@ -23,16 +23,16 @@ static void run(void);
 static void setup(void);
 
 /* variables */
-static Ball ball(1280.f / 2.f - 10.f, 720.f / 2.f - 10.f); /* TODO: don't hardcode -10.f (radius) */
+static Ball ball(SCREEN_WIDTH / 2.f - 10.f, SCREEN_HEIGHT / 2.f - 10.f); /* TODO: don't hardcode -10.f (radius) */
 static sf::Time dt; /* TODO: this should be a float + simplify dt mechanism */
 static sf::Clock dt_clock;
-static Paddle enemy(100.f, 720.f / 2.f - enemy.getSize().y / 2);
+static Paddle enemy(100.f, SCREEN_HEIGHT / 2.f - enemy.getSize().y / 2);
 static sf::Event event;
 static sf::Font font;
-static Paddle player(1280.f - player.getSize().x - 100.f, 720.f / 2.f - player.getSize().y / 2); /* TODO: don't use play in initialization */
+static Paddle player(SCREEN_WIDTH - player.getSize().x - 100.f, SCREEN_HEIGHT / 2.f - player.getSize().y / 2); /* TODO: don't use play in initialization */
 static sf::Sound pop_sound;
 static sf::SoundBuffer pop_buffer;
-static sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::None);
+static sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Pong", sf::Style::None);
 
 /* constants */
 static const std::string FILEPATH = "res/";
@@ -73,27 +73,27 @@ void run(void) {
             player.move(0.f, PLAYER_SPEED_Y * dt.asSeconds());
 
         //border check for player
-        if (player.getPosition().y >= 720.f - player.getSize().y)
-            player.setPosition(player.getPosition().x, 720.f - player.getSize().y);
+        if (player.getPosition().y >= SCREEN_HEIGHT - player.getSize().y)
+            player.setPosition(player.getPosition().x, SCREEN_HEIGHT - player.getSize().y);
         else if (player.getPosition().y <= 0.f)
             player.setPosition(player.getPosition().x, 0.f);
         
         //ball border check
         if (ball.getPosition().x <= 0.f) {
             player.score++;
-            ball.setPosition(1280.f / 2.f - ball.getRadius(), 720.f / 2.f - ball.getRadius());
+            ball.setPosition(SCREEN_WIDTH / 2.f - ball.getRadius(), SCREEN_HEIGHT / 2.f - ball.getRadius());
             player.score_counter.setString(std::to_string(player.score));
             ball.speed_x = BALL_START_SPEED_X;
-        } else if (ball.getPosition().x >= 1280.f - ball.getRadius()) {
+        } else if (ball.getPosition().x >= SCREEN_WIDTH - ball.getRadius()) {
             enemy.score++;
-            ball.setPosition(1280.f / 2.f - ball.getRadius(), 720.f / 2.f - ball.getRadius());
+            ball.setPosition(SCREEN_WIDTH / 2.f - ball.getRadius(), SCREEN_HEIGHT / 2.f - ball.getRadius());
             enemy.score_counter.setString(std::to_string(enemy.score));
             ball.speed_x = BALL_START_SPEED_X;
         }
         if (ball.getPosition().y <= 0.f) {
             pop_sound.play();
             ball.speed_y *= -1.f;
-        } else if (ball.getPosition().y >= 720.f - ball.getRadius()) {
+        } else if (ball.getPosition().y >= SCREEN_HEIGHT - ball.getRadius()) {
             pop_sound.play(); 
             ball.speed_y *= -1.f;
         } 
@@ -116,8 +116,8 @@ void run(void) {
         //border check for enemy
         if (enemy.getPosition().y <= 0.f)
             enemy.setPosition(enemy.getPosition().x, 0.f);
-        else if (enemy.getPosition().y + enemy.getSize().y >= 720.f)
-            enemy.setPosition(enemy.getPosition().x, 720.f - enemy.getSize().y);
+        else if (enemy.getPosition().y + enemy.getSize().y >= SCREEN_HEIGHT)
+            enemy.setPosition(enemy.getPosition().x, SCREEN_HEIGHT - enemy.getSize().y);
 
         draw();
     }

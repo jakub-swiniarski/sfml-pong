@@ -1,5 +1,9 @@
 #pragma once
 
+/* resolution */
+static unsigned int SCREEN_WIDTH = 1280;
+static unsigned int SCREEN_HEIGHT = 720;
+
 /* appearance */
 static const sf::Color BALL_COLOR = sf::Color::Green;
 
