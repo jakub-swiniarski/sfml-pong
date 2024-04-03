@@ -1,6 +1,6 @@
-SRC = $(wildcard *.cpp)
-HDR = $(wildcard *.hpp)
-OBJ = $(SRC:.cpp=.o)
+SRC = $(wildcard src/*.cpp)
+HDR = $(wildcard src/*.hpp)
+OBJ = $(patsubst src/%.c, %.o, $(SRC))
 
 pong: $(OBJ)
 	g++ -o $@ $(OBJ) -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
