@@ -6,7 +6,7 @@ pong: $(OBJ)
 	g++ -o $@ $(OBJ) -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 $(OBJ): $(SRC) $(HDR)
-	gcc -c $(SRC) -O2
+	g++ -c $(SRC) -O2
 
 .PHONY: clean run install uninstall
 
