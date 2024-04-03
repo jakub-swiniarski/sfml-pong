@@ -28,9 +28,6 @@ static sf::Clock dtClock;
 static Paddle enemy(100.f, 720.f / 2.f - enemy.getSize().y / 2);
 static sf::Event event;
 static sf::Font font;
-static int fps;
-static sf::Text fpsCounter;
-static bool fpsVisible;
 static Paddle player(1280.f - player.getSize().x - 100.f, 720.f / 2.f - player.getSize().y / 2); /* TODO: don't use play in initialization */
 static sf::Sound popSound;
 static sf::SoundBuffer popBuffer;
@@ -52,8 +49,6 @@ void run(void) {
             if (event.type == sf::Event::EventType::KeyPressed) {
                 if (event.key.code == sf::Keyboard::Escape)
                     window.close();
-                else if (event.key.code == sf::Keyboard::F1)
-                    fpsVisible = !fpsVisible;
             }
         }
  
@@ -108,9 +103,6 @@ void run(void) {
         else if (enemy.getPosition().y + enemy.getSize().y >= 720.f)
             enemy.setPosition(enemy.getPosition().x, 720.f - enemy.getSize().y);
 
-        fps = 1 / dt.asSeconds();
-        fpsCounter.setString(std::to_string(fps) + " FPS");
-
         window.clear();
         
         window.draw(ball);
@@ -119,8 +111,6 @@ void run(void) {
 
         window.draw(enemy.score_counter);
         window.draw(player.score_counter);
-        if(fpsVisible)
-            window.draw(fpsCounter); 
         
         window.display();
     }
@@ -136,14 +126,6 @@ void setup(void) {
 
     enemy.score_counter.setFont(font);
     player.score_counter.setFont(font);
-    
-    fps = 0;
-    fpsCounter.setFont(font);
-    fpsCounter.setString("0");
-    fpsCounter.setCharacterSize(36);
-    fpsCounter.setFillColor(sf::Color::White);
-    fpsCounter.setPosition(5.f, -5.f);
-    fpsVisible = 0;
 }
 
 int main(void) {
