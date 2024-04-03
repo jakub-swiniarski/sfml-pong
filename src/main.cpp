@@ -124,6 +124,8 @@ void run(void) {
 }
 
 void setup(void) {
+    window.setFramerateLimit(FPS);
+
     if (!font.loadFromFile(FILEPATH + "font.ttf"))
         window.close();
 
