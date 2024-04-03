@@ -7,4 +7,5 @@ public: /* TODO: THIS IS A TEMPORARY SOLUTION */
 
     Paddle(float x, float y);
     bool ball_collision_check(Ball &ball);
+    void border_check(void);
 };
