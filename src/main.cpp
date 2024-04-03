@@ -24,13 +24,13 @@ static void setup(void);
 /* variables */
 static Ball ball(1280.f / 2.f - 10.f, 720.f / 2.f - 10.f); /* TODO: don't hardcode -10.f (radius) */
 static sf::Time dt;
-static sf::Clock dtClock;
+static sf::Clock dt_clock;
 static Paddle enemy(100.f, 720.f / 2.f - enemy.getSize().y / 2);
 static sf::Event event;
 static sf::Font font;
 static Paddle player(1280.f - player.getSize().x - 100.f, 720.f / 2.f - player.getSize().y / 2); /* TODO: don't use play in initialization */
-static sf::Sound popSound;
-static sf::SoundBuffer popBuffer;
+static sf::Sound pop_sound;
+static sf::SoundBuffer pop_buffer;
 static sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::None);
 
 /* constants */
@@ -39,7 +39,7 @@ static const std::string FILEPATH = "res/";
 /*function implementations */
 void run(void) {
     while (window.isOpen()) {
-        dt = dtClock.restart();
+        dt = dt_clock.restart();
 
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
@@ -77,10 +77,10 @@ void run(void) {
             ball.speed_x = BALL_START_SPEED_X;
         }
         if (ball.getPosition().y <= 0.f) {
-            popSound.play();
+            pop_sound.play();
             ball.speed_y *= -1.f;
         } else if (ball.getPosition().y >= 720.f - ball.getRadius()) {
-            popSound.play(); 
+            pop_sound.play(); 
             ball.speed_y *= -1.f;
         } 
 
@@ -89,9 +89,9 @@ void run(void) {
 
         //ball collisions with entities
         if (enemy.ball_collision_check(ball))
-            popSound.play();
+            pop_sound.play();
         else if (player.ball_collision_check(ball))
-            popSound.play();
+            pop_sound.play();
 
         //enemy movement
         if (enemy.getPosition().y + enemy.getSize().y / 2.f > ball.getPosition().y + ball.getRadius() / 2.f)
@@ -122,9 +122,9 @@ void setup(void) {
     if (!font.loadFromFile(FILEPATH + "font.ttf"))
         window.close();
 
-    if (!popBuffer.loadFromFile(FILEPATH + "pop.wav"))
+    if (!pop_buffer.loadFromFile(FILEPATH + "pop.wav"))
         window.close(); 
-    popSound.setBuffer(popBuffer);
+    pop_sound.setBuffer(pop_buffer);
 
     enemy.score_counter.setFont(font);
     player.score_counter.setFont(font);
