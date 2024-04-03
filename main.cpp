@@ -84,26 +84,18 @@ int main(void) {
         
         //ball border check
         if (ball.getPosition().x <= 0.f) {
-            //player wins
             player.score++;
             ball.setPosition(1280.f / 2.f - ball.getRadius(), 720.f / 2.f - ball.getRadius());
-
-            //update score
             player.score_counter.setString(std::to_string(player.score));
-        }
-        else if (ball.getPosition().x >= 1280.f - ball.getRadius()) {
-            //enemy wins
+        } else if (ball.getPosition().x >= 1280.f - ball.getRadius()) {
             enemy.score++;
             ball.setPosition(1280.f / 2.f - ball.getRadius(), 720.f / 2.f - ball.getRadius());
-
-            //update score
             enemy.score_counter.setString(std::to_string(enemy.score));
         }
         if (ball.getPosition().y <= 0.f) {
             popSound.play();
             ball.speed_y *= -1.f;
-        }
-        else if (ball.getPosition().y >= 720.f - ball.getRadius()) {
+        } else if (ball.getPosition().y >= 720.f - ball.getRadius()) {
             popSound.play(); 
             ball.speed_y *= -1.f;
         } 
@@ -138,7 +130,6 @@ int main(void) {
         window.draw(enemy);
         window.draw(player);
 
-        //text
         window.draw(enemy.score_counter);
         window.draw(player.score_counter);
         if(fpsVisible)
