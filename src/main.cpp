@@ -9,6 +9,7 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/VideoMode.hpp>
 #include <SFML/Window/WindowBase.hpp>
+#include <SFML/Window/WindowStyle.hpp>
 #include <string>
 
 #include "Ball.hpp"
@@ -16,47 +17,33 @@
 
 #include "config.hpp"
 
-int main(void) {
-    sf::ContextSettings settings;
-    settings.antialiasingLevel = 8;
+/* function declarations */
+static void run(void);
+static void setup(void);
 
-    sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::None, settings);
+/* variables */
+static Ball ball(1280.f / 2.f - 10.f, 720.f / 2.f - 10.f); /* TODO: don't hardcode -10.f (radius) */
+static sf::Time dt;
+static sf::Clock dtClock;
+static Paddle enemy(100.f, 720.f / 2.f - enemy.getSize().y / 2);
+static sf::Event event;
+static sf::Font font;
+static int fps;
+static sf::Text fpsCounter;
+static bool fpsVisible;
+static Paddle player(1280.f - player.getSize().x - 100.f, 720.f / 2.f - player.getSize().y / 2); /* TODO: don't use play in initialization */
+static sf::Sound popSound;
+static sf::SoundBuffer popBuffer;
+static sf::RenderWindow window(sf::VideoMode(1280, 720), "Pong", sf::Style::None);
 
-    std::string filepath = "res/";
+/* constants */
+static const std::string FILEPATH = "res/";
 
-    sf::Font font;
-    if (!font.loadFromFile(filepath + "font.ttf"))
-        window.close();
-
-    sf::SoundBuffer popBuffer;
-    if (!popBuffer.loadFromFile(filepath + "pop.wav"))
-        window.close(); 
-    sf::Sound popSound;
-    popSound.setBuffer(popBuffer);
-
-    Ball ball(1280.f / 2.f - 10.f, 720.f / 2.f - 10.f); /* TODO: don't hardcode -10.f (radius) */
-
-    Paddle enemy(100.f, 720.f / 2.f - enemy.getSize().y / 2);
-    enemy.score_counter.setFont(font);
-    Paddle player(1280.f - player.getSize().x - 100.f, 720.f / 2.f - player.getSize().y / 2); /* TODO: don't use play in initialization */
-    player.score_counter.setFont(font);
-
-    sf::Clock dtClock;
-    sf::Time dt;
-    
-    sf::Text fpsCounter;
-    fpsCounter.setFont(font);
-    fpsCounter.setString("0");
-    fpsCounter.setCharacterSize(36);
-    fpsCounter.setFillColor(sf::Color::White);
-    fpsCounter.setPosition(5.f, -5.f);
-    int fps = 0;
-    bool fpsVisible = 0;
-    
+/*function implementations */
+void run(void) {
     while (window.isOpen()) {
         dt = dtClock.restart();
 
-        sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
@@ -137,6 +124,31 @@ int main(void) {
         
         window.display();
     }
+}
+
+void setup(void) {
+    if (!font.loadFromFile(FILEPATH + "font.ttf"))
+        window.close();
+
+    if (!popBuffer.loadFromFile(FILEPATH + "pop.wav"))
+        window.close(); 
+    popSound.setBuffer(popBuffer);
+
+    enemy.score_counter.setFont(font);
+    player.score_counter.setFont(font);
+    
+    fps = 0;
+    fpsCounter.setFont(font);
+    fpsCounter.setString("0");
+    fpsCounter.setCharacterSize(36);
+    fpsCounter.setFillColor(sf::Color::White);
+    fpsCounter.setPosition(5.f, -5.f);
+    fpsVisible = 0;
+}
+
+int main(void) {
+    setup();    
+    run();
 
     return 0;
 }
