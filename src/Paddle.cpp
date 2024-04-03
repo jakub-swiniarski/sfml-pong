@@ -8,6 +8,8 @@
 #include "Ball.hpp"
 #include "Paddle.hpp"
 
+#include "config.hpp"
+
 Paddle::Paddle(float x, float y) {
     setSize(sf::Vector2f(20.f, 100.f));
     setFillColor(sf::Color::White);
@@ -32,4 +34,11 @@ bool Paddle::ball_collision_check(Ball &ball) {
         }
     }
     return 0;
+}
+
+void Paddle::border_check(void) {
+    if (getPosition().y <= 0.f)
+        setPosition(getPosition().x, 0.f);
+    else if (getPosition().y + getSize().y >= SCREEN_HEIGHT)
+        setPosition(getPosition().x, SCREEN_HEIGHT - getSize().y);
 }

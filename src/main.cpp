@@ -72,11 +72,7 @@ void run(void) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
             player.move(0.f, PLAYER_SPEED_Y * dt.asSeconds());
 
-        //border check for player
-        if (player.getPosition().y >= SCREEN_HEIGHT - player.getSize().y)
-            player.setPosition(player.getPosition().x, SCREEN_HEIGHT - player.getSize().y);
-        else if (player.getPosition().y <= 0.f)
-            player.setPosition(player.getPosition().x, 0.f);
+        player.border_check();
         
         //ball border check
         if (ball.getPosition().x <= 0.f) {
@@ -112,13 +108,9 @@ void run(void) {
             enemy.move(0.f, -ENEMY_SPEED_Y * dt.asSeconds());
         else
             enemy.move(0.f, ENEMY_SPEED_Y * dt.asSeconds());
-        
-        //border check for enemy
-        if (enemy.getPosition().y <= 0.f)
-            enemy.setPosition(enemy.getPosition().x, 0.f);
-        else if (enemy.getPosition().y + enemy.getSize().y >= SCREEN_HEIGHT)
-            enemy.setPosition(enemy.getPosition().x, SCREEN_HEIGHT - enemy.getSize().y);
 
+        enemy.border_check();
+        
         draw();
     }
 }
