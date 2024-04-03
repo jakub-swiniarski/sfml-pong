@@ -54,9 +54,9 @@ void run(void) {
  
         //player movement
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-            player.move(0.f, -192.f * dt.asSeconds());
+            player.move(0.f, -PLAYER_SPEED_Y * dt.asSeconds());
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-            player.move(0.f, 192.f * dt.asSeconds());
+            player.move(0.f, PLAYER_SPEED_Y * dt.asSeconds());
 
         //border check for player
         if (player.getPosition().y >= 720.f - player.getSize().y)
@@ -69,10 +69,12 @@ void run(void) {
             player.score++;
             ball.setPosition(1280.f / 2.f - ball.getRadius(), 720.f / 2.f - ball.getRadius());
             player.score_counter.setString(std::to_string(player.score));
+            ball.speed_x = BALL_START_SPEED_X;
         } else if (ball.getPosition().x >= 1280.f - ball.getRadius()) {
             enemy.score++;
             ball.setPosition(1280.f / 2.f - ball.getRadius(), 720.f / 2.f - ball.getRadius());
             enemy.score_counter.setString(std::to_string(enemy.score));
+            ball.speed_x = BALL_START_SPEED_X;
         }
         if (ball.getPosition().y <= 0.f) {
             popSound.play();
@@ -93,9 +95,9 @@ void run(void) {
 
         //enemy movement
         if (enemy.getPosition().y + enemy.getSize().y / 2.f > ball.getPosition().y + ball.getRadius() / 2.f)
-            enemy.move(0.f, -192.f * dt.asSeconds());
+            enemy.move(0.f, -ENEMY_SPEED_Y * dt.asSeconds());
         else
-            enemy.move(0.f, 192.f * dt.asSeconds());
+            enemy.move(0.f, ENEMY_SPEED_Y * dt.asSeconds());
         
         //border check for enemy
         if (enemy.getPosition().y <= 0.f)
