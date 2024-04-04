@@ -9,6 +9,7 @@ class Ball: public sf::CircleShape {
 public:
     Ball(float x, float y);
     bool border_check(void);
+    void bounce_paddle(void);
     void reset_speed(void);
     void update(float mod);
 };

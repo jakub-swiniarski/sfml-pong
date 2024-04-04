@@ -11,6 +11,6 @@ public: /* TODO: THIS IS A TEMPORARY SOLUTION */
     sf::Text score_counter;
 
     Paddle(float x, float y);
-    bool ball_collision_check(Ball &ball);
+    bool ball_collision_check(Ball *b);
     void border_check(void);
 };

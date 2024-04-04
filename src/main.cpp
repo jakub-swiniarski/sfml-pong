@@ -88,8 +88,8 @@ void run(void) {
         ball.update(dt.asSeconds());
 
         //ball collisions with entities
-        if ((enemy.ball_collision_check(ball))
-        || player.ball_collision_check(ball))
+        if ((enemy.ball_collision_check(&ball))
+        || player.ball_collision_check(&ball))
             pop_sound.play();
 
         //enemy movement
