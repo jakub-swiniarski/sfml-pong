@@ -95,7 +95,7 @@ void run(void) {
         }
 
         //ball movement
-        ball.move(ball.speed_x * dt.asSeconds(), ball.speed_y * dt.asSeconds()); 
+        ball.update(dt.asSeconds());
 
         //ball collisions with entities
         if ((enemy.ball_collision_check(ball))
