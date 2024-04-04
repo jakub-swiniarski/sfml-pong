@@ -1,3 +1,8 @@
+#pragma once
+
+class Ball;
+class Paddle;
+
 class Observer {
     Paddle *player, *enemy;
     Ball *ball;
@@ -8,4 +13,4 @@ public:
     void set_enemy(Paddle *e);
     void set_ball(Ball *b);
     void update(void);
-}
+};

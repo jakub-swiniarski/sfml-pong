@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SFML/Graphics/Color.hpp>
+
 /* resolution */
 static unsigned int SCREEN_WIDTH = 1280;
 static unsigned int SCREEN_HEIGHT = 720;

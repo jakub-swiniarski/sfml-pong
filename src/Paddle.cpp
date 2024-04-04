@@ -1,10 +1,3 @@
-#include <SFML/Graphics/CircleShape.hpp>
-#include <SFML/Graphics/Color.hpp>
-#include <SFML/Graphics/Font.hpp>
-#include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/System/Vector2.hpp>
-
 #include "Ball.hpp"
 #include "Paddle.hpp"
 
