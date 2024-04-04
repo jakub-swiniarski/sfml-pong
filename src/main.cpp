@@ -19,6 +19,7 @@
 
 /* function declarations */
 static void draw(void);
+static void input(void);
 static void run(void);
 static void setup(void);
 
@@ -51,6 +52,13 @@ void draw(void) {
     window.display();
 }
 
+void input(void) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        player.move(0.f, -PLAYER_SPEED_Y * dt.asSeconds());
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        player.move(0.f, PLAYER_SPEED_Y * dt.asSeconds());
+}
+
 void run(void) {
     while (window.isOpen()) {
         dt = dt_clock.restart();
@@ -65,12 +73,7 @@ void run(void) {
                     window.close();
         }
  
-        //player movement
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-            player.move(0.f, -PLAYER_SPEED_Y * dt.asSeconds());
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-            player.move(0.f, PLAYER_SPEED_Y * dt.asSeconds());
-
+        input();
         player.border_check();
         
         //ball border check
