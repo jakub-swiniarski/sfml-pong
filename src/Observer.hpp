@@ -9,10 +9,7 @@ class Observer {
     Ball *ball;
 
 public:
-    Observer(void);
-    void set_player(Paddle *p);
-    void set_enemy(Paddle *e);
-    void set_ball(Ball *b);
+    Observer(Ball *b, Paddle *p, Paddle *e);
     void update(void);
 };
 

@@ -17,15 +17,12 @@ Paddle::Paddle(float x, float y) {
     score_counter.setPosition(x, 0.f); /* TODO: both in the same place? interesting... */
 }
 
-bool Paddle::ball_collision_check(Ball &ball) {
-    if (ball.getPosition().y <= getPosition().y + getSize().y && ball.getPosition().y + ball.getRadius() >= getPosition().y) {
-        if (ball.getPosition().x + ball.getRadius() >= getPosition().x
-        && ball.getPosition().x <= getPosition().x + getSize().x) {
-            //ball.speed_x *= -1;
-            //ball.speed_x += (ball.speed_x > 0) ? 50 : -50;
+bool Paddle::ball_collision_check(Ball *b) {
+    if (b->getPosition().y <= getPosition().y + getSize().y
+    && b->getPosition().y + b->getRadius() >= getPosition().y)
+        if (b->getPosition().x + b->getRadius() >= getPosition().x
+        && b->getPosition().x <= getPosition().x + getSize().x)
             return 1;
-        }
-    }
     return 0;
 }
 

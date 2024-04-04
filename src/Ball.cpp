@@ -20,6 +20,12 @@ bool Ball::border_check(void) {
     return 0;
 }
 
+void Ball::bounce_paddle(void) {
+    speed_x *= -1;
+    speed_x += (speed_x > 0) ? 50 : -50;
+}
+
+
 void Ball::reset_speed(void) {
     speed_x = BALL_START_SPEED_X;
     speed_y = BALL_START_SPEED_Y;
