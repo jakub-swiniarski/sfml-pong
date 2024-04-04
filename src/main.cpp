@@ -6,6 +6,7 @@
 #include <SFML/Window/Event.hpp>
 
 #include "Ball.hpp"
+#include "Observer.hpp"
 #include "Paddle.hpp"
 
 #include "config.hpp"
@@ -53,6 +54,8 @@ void input(void) {
 }
 
 void run(void) {
+    Observer observer(&ball, &player, &enemy); /* TODO: add setters and make observer static, accessible by all main funcs */
+
     while (window.isOpen()) {
         dt = dt_clock.restart();
 
@@ -99,6 +102,8 @@ void run(void) {
             enemy.move(0.f, ENEMY_SPEED_Y * dt.asSeconds());
 
         enemy.border_check();
+
+        observer.update();
         
         draw();
     }
