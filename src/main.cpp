@@ -81,18 +81,15 @@ void run(void) {
             player.score++;
             ball.setPosition(SCREEN_WIDTH / 2.f - ball.getRadius(), SCREEN_HEIGHT / 2.f - ball.getRadius());
             player.score_counter.setString(std::to_string(player.score));
-            ball.speed_x = BALL_START_SPEED_X;
+            ball.reset_speed();
         } else if (ball.getPosition().x >= SCREEN_WIDTH - ball.getRadius()) {
             enemy.score++;
             ball.setPosition(SCREEN_WIDTH / 2.f - ball.getRadius(), SCREEN_HEIGHT / 2.f - ball.getRadius());
             enemy.score_counter.setString(std::to_string(enemy.score));
-            ball.speed_x = BALL_START_SPEED_X;
+            ball.reset_speed();
         }
-        if (ball.getPosition().y <= 0.f
-        || ball.getPosition().y >= SCREEN_HEIGHT - ball.getRadius()) {
+        if (ball.border_check())
             pop_sound.play();
-            ball.speed_y *= -1.f;
-        }
 
         //ball movement
         ball.update(dt.asSeconds());
