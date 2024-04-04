@@ -30,7 +30,7 @@ static sf::Clock dt_clock;
 static Paddle enemy(100.f, SCREEN_HEIGHT / 2.f - enemy.getSize().y / 2);
 static sf::Event event;
 static sf::Font font;
-static Paddle player(SCREEN_WIDTH - player.getSize().x - 100.f, SCREEN_HEIGHT / 2.f - player.getSize().y / 2); /* TODO: don't use play in initialization */
+static Paddle player(SCREEN_WIDTH - player.getSize().x - 100.f, SCREEN_HEIGHT / 2.f - player.getSize().y / 2); /* TODO: don't use player in initialization */
 static sf::Sound pop_sound;
 static sf::SoundBuffer pop_buffer;
 static sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Pong", sf::Style::None); /* TODO: fullscreen */
