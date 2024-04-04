@@ -1,5 +1,3 @@
-#include "SFML/Graphics/CircleShape.hpp"
-
 #include "Ball.hpp"
 
 #include "config.hpp"
