@@ -1,4 +1,5 @@
-#pragma once
+#ifndef OBSERVER_HPP
+#define OBSERVER_HPP
 
 class Ball;
 class Paddle;
@@ -14,3 +15,5 @@ public:
     void set_ball(Ball *b);
     void update(void);
 };
+
+#endif /* OBSERVER_HPP */

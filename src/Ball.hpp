@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BALL_HPP
+#define BALL_HPP
 
 #include <SFML/Graphics/CircleShape.hpp>
 
@@ -11,3 +12,5 @@ public:
     void reset_speed(void);
     void update(float mod);
 };
+
+#endif /* BALL_HPP */
