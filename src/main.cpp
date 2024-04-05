@@ -14,7 +14,6 @@
 
 /* function declarations */
 static void draw(void);
-static void input(void);
 static void run(void);
 static void setup(void);
 
@@ -45,13 +44,6 @@ void draw(void) {
     window.display();
 }
 
-void input(void) {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        player.move(0.f, -PLAYER_SPEED_Y * dt);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        player.move(0.f, PLAYER_SPEED_Y * dt);
-}
-
 void run(void) {
     sf::Clock dt_clock;
     InputProcessor input_processor(&player);
@@ -65,7 +57,6 @@ void run(void) {
             if (event.type == sf::Event::Closed)
                 window.close();
 
-            //keyboard input
             if (event.type == sf::Event::EventType::KeyPressed)
                 if (event.key.code == sf::Keyboard::Escape)
                     window.close();
