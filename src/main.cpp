@@ -19,7 +19,6 @@ static void setup(void);
 
 /* variables */
 static Ball ball(SCREEN_WIDTH / 2.f - 10.f, SCREEN_HEIGHT / 2.f - 10.f); /* TODO: don't hardcode -10.f (radius) */
-static float dt; /* TODO: this should be a float + simplify dt mechanism */
 static Paddle enemy(100.f, SCREEN_HEIGHT / 2.f - enemy.getSize().y / 2);
 static sf::Font font;
 static Paddle player(SCREEN_WIDTH - player.getSize().x - 100.f, SCREEN_HEIGHT / 2.f - player.getSize().y / 2); /* TODO: don't use player in initialization */
@@ -50,7 +49,7 @@ void run(void) {
     Observer observer(&ball, &player, &enemy); /* TODO: move other vars here (if possible) */
 
     while (window.isOpen()) {
-        dt = dt_clock.restart().asSeconds();
+        float dt = dt_clock.restart().asSeconds();
 
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -103,8 +102,6 @@ void run(void) {
 }
 
 void setup(void) {
-    dt = 1.f;
-
     window.setFramerateLimit(FPS);
 
     if (!font.loadFromFile(FILEPATH + "font.ttf"))
