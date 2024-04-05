@@ -6,6 +6,7 @@
 #include <SFML/Window/Event.hpp>
 
 #include "Ball.hpp"
+#include "InputProcessor.hpp"
 #include "Observer.hpp"
 #include "Paddle.hpp"
 
@@ -53,6 +54,7 @@ void input(void) {
 
 void run(void) {
     sf::Clock dt_clock;
+    InputProcessor input_processor(&player);
     Observer observer(&ball, &player, &enemy); /* TODO: move other vars here (if possible) */
 
     while (window.isOpen()) {
@@ -69,7 +71,7 @@ void run(void) {
                     window.close();
         }
  
-        input();
+        input_processor.update(dt);
         player.border_check();
         
         //ball border check
