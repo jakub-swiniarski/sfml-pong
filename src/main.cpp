@@ -19,7 +19,7 @@ static void setup(void);
 
 /* variables */
 static Ball ball(SCREEN_WIDTH / 2.f - 10.f, SCREEN_HEIGHT / 2.f - 10.f); /* TODO: don't hardcode -10.f (radius) */
-static sf::Time dt; /* TODO: this should be a float + simplify dt mechanism */
+static float dt; /* TODO: this should be a float + simplify dt mechanism */
 static sf::Clock dt_clock;
 static Paddle enemy(100.f, SCREEN_HEIGHT / 2.f - enemy.getSize().y / 2);
 static sf::Event event;
@@ -48,16 +48,16 @@ void draw(void) {
 
 void input(void) {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        player.move(0.f, -PLAYER_SPEED_Y * dt.asSeconds());
+        player.move(0.f, -PLAYER_SPEED_Y * dt);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        player.move(0.f, PLAYER_SPEED_Y * dt.asSeconds());
+        player.move(0.f, PLAYER_SPEED_Y * dt);
 }
 
 void run(void) {
     Observer observer(&ball, &player, &enemy); /* TODO: move other vars here (if possible) */
 
     while (window.isOpen()) {
-        dt = dt_clock.restart();
+        dt = dt_clock.restart().asSeconds();
 
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
@@ -88,7 +88,7 @@ void run(void) {
             pop_sound.play();
 
         //ball movement
-        ball.update(dt.asSeconds());
+        ball.update(dt);
 
         //ball collisions with entities
         if ((enemy.ball_collision_check(&ball))
@@ -97,9 +97,9 @@ void run(void) {
 
         //enemy movement
         if (enemy.getPosition().y + enemy.getSize().y / 2.f > ball.getPosition().y + ball.getRadius() / 2.f)
-            enemy.move(0.f, -ENEMY_SPEED_Y * dt.asSeconds());
+            enemy.move(0.f, -ENEMY_SPEED_Y * dt);
         else
-            enemy.move(0.f, ENEMY_SPEED_Y * dt.asSeconds());
+            enemy.move(0.f, ENEMY_SPEED_Y * dt);
 
         enemy.border_check();
 
