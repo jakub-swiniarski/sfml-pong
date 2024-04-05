@@ -1,3 +1,5 @@
+#include <string>
+
 #include "Ball.hpp"
 #include "Paddle.hpp"
 
@@ -31,4 +33,9 @@ void Paddle::border_check(void) {
         setPosition(getPosition().x, 0.f);
     else if (getPosition().y + getSize().y >= SCREEN_HEIGHT)
         setPosition(getPosition().x, SCREEN_HEIGHT - getSize().y);
+}
+
+void Paddle::update_counter(void) {
+    score++;
+    score_counter.setString(std::to_string(score));
 }
