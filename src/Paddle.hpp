@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PADDLE_H
+#define PADDLE_H
 
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -14,3 +15,5 @@ public: /* TODO: THIS IS A TEMPORARY SOLUTION */
     bool ball_collision_check(Ball *b);
     void border_check(void);
 };
+
+#endif /* PADDLE_H */
