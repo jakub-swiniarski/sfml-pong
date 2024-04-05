@@ -74,15 +74,12 @@ void run(void) {
         
         //ball border check
         if (ball.getPosition().x <= 0.f) { /* TODO: this has to be done by the observer */
-            /* TODO: this could be turned into a method (update_counter?) */
-            player.score++;
-            player.score_counter.setString(std::to_string(player.score));
+            player.update_counter();
 
             ball.setPosition(SCREEN_WIDTH / 2.f - ball.getRadius(), SCREEN_HEIGHT / 2.f - ball.getRadius());
             ball.reset_speed();
         } else if (ball.getPosition().x >= SCREEN_WIDTH - ball.getRadius()) {
-            enemy.score++;
-            enemy.score_counter.setString(std::to_string(enemy.score));
+            enemy.update_counter();
 
             ball.setPosition(SCREEN_WIDTH / 2.f - ball.getRadius(), SCREEN_HEIGHT / 2.f - ball.getRadius());
             ball.reset_speed();

@@ -14,6 +14,7 @@ public: /* TODO: THIS IS A TEMPORARY SOLUTION */
     Paddle(float x, float y);
     bool ball_collision_check(Ball *b);
     void border_check(void);
+    void update_counter(void);
 };
 
 #endif /* PADDLE_H */
