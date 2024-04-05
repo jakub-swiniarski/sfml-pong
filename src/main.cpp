@@ -52,10 +52,11 @@ void input(void) {
 }
 
 void run(void) {
+    sf::Clock dt_clock;
     Observer observer(&ball, &player, &enemy); /* TODO: move other vars here (if possible) */
 
     while (window.isOpen()) {
-        sf::Clock dt_clock;
+        dt = dt_clock.restart().asSeconds();
 
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -105,8 +106,6 @@ void run(void) {
         observer.update();
         
         draw();
-
-        dt = dt_clock.restart().asSeconds();
     }
 }
 
