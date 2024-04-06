@@ -15,7 +15,7 @@ Paddle::Paddle(float x, float y) {
     /* TODO: clean this mess up */
     score_counter.setString("0");
     score_counter.setCharacterSize(FONT_SIZE); /* TODO: put this in config.hpp */
-    score_counter.setFillColor(sf::Color::White);
+    score_counter.setFillColor(PADDLE_COLOR);
     score_counter.setPosition(x, 0.f);
 }
 
