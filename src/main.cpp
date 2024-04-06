@@ -67,14 +67,10 @@ void run(void) {
         //ball border check
         if (ball.getPosition().x <= 0.f) { /* TODO: this has to be done by the observer */
             player.update_counter();
-
-            ball.setPosition(SCREEN_WIDTH / 2.f - ball.getRadius(), SCREEN_HEIGHT / 2.f - ball.getRadius());
-            ball.reset_speed();
+            ball.reset();
         } else if (ball.getPosition().x >= SCREEN_WIDTH - ball.getRadius()) {
             enemy.update_counter();
-
-            ball.setPosition(SCREEN_WIDTH / 2.f - ball.getRadius(), SCREEN_HEIGHT / 2.f - ball.getRadius());
-            ball.reset_speed();
+            ball.reset();
         }
         if (ball.border_check())
             pop_sound.play();
