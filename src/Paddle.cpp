@@ -6,17 +6,17 @@
 #include "config.hpp"
 
 Paddle::Paddle(float x, float y) {
-    setSize(sf::Vector2f(20.f, 100.f));
+    setSize(sf::Vector2f(PADDLE_WIDTH, PADDLE_HEIGHT));
     setFillColor(sf::Color::White);
-    setPosition(x, y); /* TODO: config.hpp screenwidth and screenheight */
+    setPosition(x, y);
 
     score = 0;
 
     /* TODO: clean this mess up */
     score_counter.setString("0");
-    score_counter.setCharacterSize(120); /* TODO: put this in config.hpp */
+    score_counter.setCharacterSize(FONT_SIZE); /* TODO: put this in config.hpp */
     score_counter.setFillColor(sf::Color::White);
-    score_counter.setPosition(x, 0.f); /* TODO: both in the same place? interesting... */
+    score_counter.setPosition(x, 0.f);
 }
 
 bool Paddle::ball_collision_check(Ball *b) {
