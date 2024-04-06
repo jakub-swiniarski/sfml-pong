@@ -12,9 +12,9 @@ Paddle::Paddle(float x, float y) {
 
     score = 0;
 
-    /* TODO: clean this mess up */
+    /* TODO: counters should probably have their own classes */
     score_counter.setString("0");
-    score_counter.setCharacterSize(FONT_SIZE); /* TODO: put this in config.hpp */
+    score_counter.setCharacterSize(FONT_SIZE);
     score_counter.setFillColor(sf::Color::White);
     score_counter.setPosition(x, 0.f);
 }
