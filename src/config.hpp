@@ -12,7 +12,6 @@ static unsigned int FPS = 60;
 
 /* appearance */
 static const sf::Color BALL_COLOR = sf::Color::Green;
-static const sf::Color PADDLE_COLOR = sf::Color::White;
 
 /* gameplay */
 static const float BALL_START_SPEED_X = 240.f;
