@@ -4,11 +4,11 @@
 #include <SFML/Graphics/Color.hpp>
 
 /* resolution */
-static unsigned int SCREEN_WIDTH = 1280;
-static unsigned int SCREEN_HEIGHT = 720;
+static const unsigned int SCREEN_WIDTH = 1280;
+static const unsigned int SCREEN_HEIGHT = 720;
 
 /* framerate limit */
-static unsigned int FPS = 60;
+static const unsigned int FPS = 60;
 
 /* appearance */
 static const sf::Color BALL_COLOR = sf::Color::Green;
