@@ -7,8 +7,9 @@
 class Ball;
 
 class Paddle: public sf::RectangleShape {
-public: /* TODO: THIS IS A TEMPORARY SOLUTION */
     int score;
+
+public:
     sf::Text score_counter;
 
     Paddle(float x, float y);
