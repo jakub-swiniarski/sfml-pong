@@ -1,5 +1,3 @@
-#include <cstdlib>
-
 #include "Ball.hpp"
 #include "Observer.hpp"
 #include "Paddle.hpp"
