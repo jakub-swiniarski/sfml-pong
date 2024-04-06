@@ -18,10 +18,10 @@ static void run(void);
 static void setup(void);
 
 /* variables */
-static Ball ball(SCREEN_WIDTH / 2.f - 10.f, SCREEN_HEIGHT / 2.f - 10.f); /* TODO: don't hardcode -10.f (radius) */
+static Ball ball(SCREEN_WIDTH / 2.f - BALL_RADIUS, SCREEN_HEIGHT / 2.f - BALL_RADIUS);
 static Paddle enemy(100.f, SCREEN_HEIGHT / 2.f - enemy.getSize().y / 2);
 static sf::Font font;
-static Paddle player(SCREEN_WIDTH - player.getSize().x - 100.f, SCREEN_HEIGHT / 2.f - player.getSize().y / 2); /* TODO: don't use player in initialization */
+static Paddle player(SCREEN_WIDTH - player.getSize().x - 100.f, SCREEN_HEIGHT / 2.f - player.getSize().y / 2); /* TODO: don't use player in initialization, configure size like ball radius */
 static sf::Sound pop_sound;
 static sf::SoundBuffer pop_buffer;
 static sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Pong", sf::Style::None); /* TODO: fullscreen */

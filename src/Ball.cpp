@@ -3,7 +3,7 @@
 #include "config.hpp"
 
 Ball::Ball(float x, float y) {
-    setRadius(10.f); /* TODO: make this configurable */
+    setRadius(BALL_RADIUS);
     setFillColor(BALL_COLOR);
     setPosition(x, y);
 
