@@ -18,5 +18,6 @@ static const float BALL_START_SPEED_X = 240.f;
 static const float BALL_START_SPEED_Y = 240.f;
 static const float ENEMY_SPEED_Y = 200.f;
 static const float PLAYER_SPEED_Y = 200.f;
+static const float BALL_RADIUS = 10.f;
 
 #endif /* CONFIG_HPP */
