@@ -26,7 +26,8 @@ void Ball::bounce_paddle(void) {
 }
 
 
-void Ball::reset_speed(void) {
+void Ball::reset(void) {
+    setPosition(SCREEN_WIDTH / 2.f - getRadius(), SCREEN_HEIGHT / 2.f - getRadius());
     speed_x = BALL_START_SPEED_X;
     speed_y = BALL_START_SPEED_Y;
 }

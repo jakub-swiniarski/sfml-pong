@@ -10,7 +10,7 @@ public:
     Ball(float x, float y);
     bool border_check(void);
     void bounce_paddle(void);
-    void reset_speed(void);
+    void reset(void);
     void update(float mod);
 };
 
