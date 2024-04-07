@@ -2,7 +2,10 @@
 #define EVENTHANDLER_H
 
 #include <SFML/Window/Event.hpp>
-#include <SFML/Window/Window.hpp>
+
+namespace sf {
+    class Window;
+}
 
 class EventHandler {
     sf::Event event;

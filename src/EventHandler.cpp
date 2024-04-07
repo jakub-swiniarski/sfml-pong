@@ -1,3 +1,5 @@
+#include "SFML/Window/Window.hpp"
+
 #include "EventHandler.hpp"
 
 EventHandler::EventHandler(sf::Window *w) {
