@@ -6,6 +6,7 @@
 #include <SFML/Window/Event.hpp>
 
 #include "Ball.hpp"
+#include "EventHandler.hpp"
 #include "InputProcessor.hpp"
 #include "Observer.hpp"
 #include "Paddle.hpp"
@@ -45,22 +46,15 @@ void draw(void) {
 
 void run(void) {
     sf::Clock dt_clock;
+    EventHandler event_handler(&window);
     InputProcessor input_processor(&player);
     Observer observer(&ball, &player, &enemy); /* TODO: move other vars here (if possible) */
 
     while (window.isOpen()) {
         float dt = dt_clock.restart().asSeconds();
 
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window.close();
+        event_handler.update();
 
-            if (event.type == sf::Event::EventType::KeyPressed)
-                if (event.key.code == sf::Keyboard::Escape)
-                    window.close();
-        }
- 
         input_processor.update(dt);
         player.border_check();
 
