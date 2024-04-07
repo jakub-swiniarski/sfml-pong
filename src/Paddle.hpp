@@ -10,7 +10,7 @@ class Paddle: public sf::RectangleShape {
     int score;
 
 public:
-    sf::Text score_counter;
+    sf::Text counter;
 
     Paddle(float x, float y);
     bool ball_collision_check(Ball *b);

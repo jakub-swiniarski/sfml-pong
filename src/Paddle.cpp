@@ -12,11 +12,10 @@ Paddle::Paddle(float x, float y) {
 
     score = 0;
 
-    /* TODO: counters should probably have their own classes */
-    score_counter.setString("0");
-    score_counter.setCharacterSize(FONT_SIZE);
-    score_counter.setFillColor(sf::Color::White);
-    score_counter.setPosition(x, 0.f);
+    counter.setString("0");
+    counter.setCharacterSize(FONT_SIZE);
+    counter.setFillColor(sf::Color::White);
+    counter.setPosition(x, 0.f);
 }
 
 bool Paddle::ball_collision_check(Ball *b) {
@@ -37,5 +36,5 @@ void Paddle::border_check(void) {
 
 void Paddle::update_counter(void) {
     score++;
-    score_counter.setString(std::to_string(score));
+    counter.setString(std::to_string(score));
 }

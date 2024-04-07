@@ -38,8 +38,8 @@ void draw(void) {
     window.draw(enemy);
     window.draw(player);
 
-    window.draw(enemy.score_counter);
-    window.draw(player.score_counter);
+    window.draw(enemy.counter);
+    window.draw(player.counter);
     
     window.display();
 }
@@ -84,8 +84,8 @@ void setup(void) {
 
     if (!font.loadFromFile(FILEPATH + "font.ttf"))
         window.close();
-    enemy.score_counter.setFont(font);
-    player.score_counter.setFont(font);
+    enemy.counter.setFont(font);
+    player.counter.setFont(font);
 
     if (!pop_buffer.loadFromFile(FILEPATH + "pop.wav"))
         window.close(); 
