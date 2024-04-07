@@ -87,6 +87,9 @@ void setup(void) {
     enemy.counter.setFont(font);
     player.counter.setFont(font);
 
+    enemy.counter.setPosition(COUNTER_SHIFT_X, 0.f); 
+    player.counter.setPosition(SCREEN_WIDTH - COUNTER_SHIFT_X - player.counter.getGlobalBounds().width, 0.f);
+
     if (!pop_buffer.loadFromFile(FILEPATH + "pop.wav"))
         window.close(); 
     pop_sound.setBuffer(pop_buffer);

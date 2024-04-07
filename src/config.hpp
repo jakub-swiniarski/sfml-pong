@@ -22,5 +22,6 @@ static const float BALL_RADIUS = 10.f;
 static const float PADDLE_WIDTH = 20.f;
 static const float PADDLE_HEIGHT = 100.f;
 static const unsigned int FONT_SIZE = 120;
+static const float COUNTER_SHIFT_X = 300.f;
 
 #endif /* CONFIG_HPP */
