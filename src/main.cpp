@@ -66,16 +66,12 @@ void run(void) {
 
         if (ball.border_check())
             pop_sound.play();
-        
-        //ball movement
         ball.update(dt);
 
-        //ball collisions with entities
         if ((enemy.ball_collision_check(&ball))
         || player.ball_collision_check(&ball))
             pop_sound.play();
 
-        //enemy movement
         if (enemy.getPosition().y + enemy.getSize().y / 2.f > ball.getPosition().y + ball.getRadius() / 2.f)
             enemy.move(0.f, -ENEMY_SPEED_Y * dt);
         else
