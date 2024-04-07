@@ -15,7 +15,7 @@ Paddle::Paddle(float x, float y) {
     counter.setString("0");
     counter.setCharacterSize(FONT_SIZE);
     counter.setFillColor(sf::Color::White);
-    counter.setPosition(x, 0.f);
+    counter.setPosition(0.f, 0.f);
 }
 
 bool Paddle::ball_collision_check(Ball *b) {
