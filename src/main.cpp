@@ -27,7 +27,7 @@ static sf::SoundBuffer pop_buffer;
 static sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Pong", sf::Style::None); /* TODO: fullscreen */
 
 /* constants */
-static const std::string FILEPATH = "res/";
+static const std::string FILEPATH = "res/"; /* TODO: reset this before merging */
 
 /* function implementations */
 void draw(void) {
