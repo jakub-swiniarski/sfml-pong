@@ -5,9 +5,9 @@
 
 #include "config.hpp"
 
-Paddle::Paddle(float x, float y) {
+Paddle::Paddle(float x, float y, sf::Color p_col) {
     setSize(sf::Vector2f(PADDLE_WIDTH, PADDLE_HEIGHT));
-    setFillColor(sf::Color::White);
+    setFillColor(p_col);
     setPosition(x, y);
 
     score = 0;
