@@ -11,10 +11,6 @@ Observer::Observer(Ball *b, Paddle *e, Paddle *p) {
 }
 
 void Observer::update(void) {
-    if (player->ball_collision_check(ball)
-    || enemy->ball_collision_check(ball))
-        ball->bounce_paddle();
-
     if (ball->getPosition().x <= 0.f) {
         player->update_counter();
         ball->reset();

@@ -62,7 +62,7 @@ void run(void) {
             pop_sound.play();
         ball.update(dt);
 
-        if ((enemy.ball_collision_check(&ball)) /* TODO: this is already calculated in Observer.cpp */
+        if ((enemy.ball_collision_check(&ball))
         || player.ball_collision_check(&ball))
             pop_sound.play();
 
