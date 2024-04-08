@@ -19,10 +19,19 @@ Paddle::Paddle(float x, float y, sf::Color p_col, sf::Color t_col) {
 }
 
 bool Paddle::ball_collision_check(Ball *b) {
-    if (b->getGlobalBounds().intersects(getGlobalBounds())) {
+    if (!getGlobalBounds().intersects(b->getGlobalBounds()))
+        return 0;
+
+    if (getGlobalBounds().contains(b->getPosition().x, b->getPosition().y + b->getRadius() / 2.f)
+    || getGlobalBounds().contains(b->getPosition().x + b->getRadius(), b->getPosition().y + b->getRadius() / 2.f)) {
         b->bounce_x();
         return 1;
+    } else if (getGlobalBounds().contains(b->getPosition().x + b->getRadius() / 2.f, b->getPosition().y)
+    || getGlobalBounds().contains(b->getPosition().x + b->getRadius() / 2.f, b->getPosition().y + b->getRadius())) {
+        b->bounce_y();
+        return 1;
     }
+
     return 0;
 }
 
