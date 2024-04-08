@@ -13,7 +13,9 @@ static const unsigned int FPS = 60;
 /* appearance */
 static const sf::Color BALL_COLOR = sf::Color::Green;
 static const sf::Color ENEMY_COLOR = sf::Color::Red;
+static const sf::Color ENEMY_COUNTER_COLOR = sf::Color::Magenta;
 static const sf::Color PLAYER_COLOR = sf::Color::Yellow;
+static const sf::Color PLAYER_COUNTER_COLOR = sf::Color::Blue;
 
 /* gameplay */
 static const unsigned int FONT_SIZE = 120;
