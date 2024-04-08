@@ -11,11 +11,11 @@ static const unsigned int SCREEN_HEIGHT = 720;
 static const unsigned int FPS = 60;
 
 /* appearance */
-static const sf::Color BALL_COLOR = sf::Color::Green;
-static const sf::Color ENEMY_COLOR = sf::Color::Red;
-static const sf::Color ENEMY_COUNTER_COLOR = sf::Color::Magenta;
-static const sf::Color PLAYER_COLOR = sf::Color::Yellow;
-static const sf::Color PLAYER_COUNTER_COLOR = sf::Color::Blue;
+static const sf::Color BALL_COLOR(255, 255, 255); /* R, G, b */
+static const sf::Color ENEMY_COLOR(255, 0, 0);
+static const sf::Color ENEMY_COUNTER_COLOR(255, 170, 170);
+static const sf::Color PLAYER_COLOR(0, 255, 0);
+static const sf::Color PLAYER_COUNTER_COLOR(170, 255, 170);
 
 /* gameplay */
 static const unsigned int FONT_SIZE = 120;
