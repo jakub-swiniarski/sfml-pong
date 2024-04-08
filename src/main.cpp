@@ -1,8 +1,6 @@
 #include <SFML/Audio/Sound.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/System/Clock.hpp>
-#include <SFML/System/Time.hpp>
 #include <SFML/Window/Event.hpp>
 
 #include "Ball.hpp"
@@ -25,7 +23,7 @@ static sf::Font font;
 static Paddle player(SCREEN_WIDTH - PADDLE_WIDTH - 100.f, SCREEN_HEIGHT / 2.f - PADDLE_HEIGHT / 2, PLAYER_COLOR, PLAYER_COUNTER_COLOR);
 static sf::Sound pop_sound;
 static sf::SoundBuffer pop_buffer;
-static sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Pong", sf::Style::None); /* TODO: fullscreen */
+static sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Pong", sf::Style::None);
 
 /* constants */
 static const std::string FILEPATH = "res/"; /* TODO: reset this before merging */
