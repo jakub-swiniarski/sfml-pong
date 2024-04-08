@@ -4,10 +4,10 @@
 
 #include "config.hpp"
 
-Observer::Observer(Ball *b, Paddle *p, Paddle *e) {
+Observer::Observer(Ball *b, Paddle *e, Paddle *p) {
     ball = b;
-    player = p;
     enemy = e;
+    player = p;
 }
 
 void Observer::update(void) {
