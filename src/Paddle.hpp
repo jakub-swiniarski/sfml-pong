@@ -1,6 +1,7 @@
 #ifndef PADDLE_H
 #define PADDLE_H
 
+#include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Text.hpp>
 
@@ -12,7 +13,7 @@ class Paddle: public sf::RectangleShape {
 public:
     sf::Text counter;
 
-    Paddle(float x, float y);
+    Paddle(float x, float y, sf::Color p_col);
     bool ball_collision_check(Ball *b);
     void border_check(void);
     void update_counter(void);
