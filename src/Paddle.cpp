@@ -5,7 +5,7 @@
 
 #include "config.hpp"
 
-Paddle::Paddle(float x, float y, sf::Color p_col) {
+Paddle::Paddle(float x, float y, sf::Color p_col, sf::Color t_col) {
     setSize(sf::Vector2f(PADDLE_WIDTH, PADDLE_HEIGHT));
     setFillColor(p_col);
     setPosition(x, y);
@@ -14,7 +14,7 @@ Paddle::Paddle(float x, float y, sf::Color p_col) {
 
     counter.setString("0");
     counter.setCharacterSize(FONT_SIZE);
-    counter.setFillColor(sf::Color::White);
+    counter.setFillColor(t_col);
     counter.setPosition(0.f, 0.f);
 }
 

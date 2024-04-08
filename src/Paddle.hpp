@@ -13,7 +13,7 @@ class Paddle: public sf::RectangleShape {
 public:
     sf::Text counter;
 
-    Paddle(float x, float y, sf::Color p_col);
+    Paddle(float x, float y, sf::Color p_col, sf::Color t_col);
     bool ball_collision_check(Ball *b);
     void border_check(void);
     void update_counter(void);

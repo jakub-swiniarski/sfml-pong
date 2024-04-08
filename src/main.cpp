@@ -20,9 +20,9 @@ static void setup(void);
 
 /* variables */
 static Ball ball(SCREEN_WIDTH / 2.f - BALL_RADIUS, SCREEN_HEIGHT / 2.f - BALL_RADIUS);
-static Paddle enemy(100.f, SCREEN_HEIGHT / 2.f - PADDLE_HEIGHT / 2, ENEMY_COLOR);
+static Paddle enemy(100.f, SCREEN_HEIGHT / 2.f - PADDLE_HEIGHT / 2, ENEMY_COLOR, ENEMY_COUNTER_COLOR);
 static sf::Font font;
-static Paddle player(SCREEN_WIDTH - PADDLE_WIDTH - 100.f, SCREEN_HEIGHT / 2.f - PADDLE_HEIGHT / 2, PLAYER_COLOR);
+static Paddle player(SCREEN_WIDTH - PADDLE_WIDTH - 100.f, SCREEN_HEIGHT / 2.f - PADDLE_HEIGHT / 2, PLAYER_COLOR, PLAYER_COUNTER_COLOR);
 static sf::Sound pop_sound;
 static sf::SoundBuffer pop_buffer;
 static sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Pong", sf::Style::None); /* TODO: fullscreen */
