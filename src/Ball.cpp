@@ -14,17 +14,20 @@ Ball::Ball(float x, float y) {
 bool Ball::border_check(void) {
     if (getPosition().y <= 0.f
     || getPosition().y >= SCREEN_HEIGHT - getRadius()) {
-        speed_y *= -1.f;
+        bounce_y();
         return 1;
     }
     return 0;
 }
 
-void Ball::bounce_paddle(void) {
+void Ball::bounce_x(void) {
     speed_x *= -1;
     speed_x += (speed_x > 0) ? 50 : -50;
 }
 
+void Ball::bounce_y(void) {
+    speed_y *= -1;
+}
 
 void Ball::reset(void) {
     setPosition(SCREEN_WIDTH / 2.f - getRadius(), SCREEN_HEIGHT / 2.f - getRadius());
