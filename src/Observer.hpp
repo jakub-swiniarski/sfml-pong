@@ -9,7 +9,7 @@ class Observer {
     Ball *ball;
 
 public:
-    Observer(Ball *b, Paddle *p, Paddle *e);
+    Observer(Ball *b, Paddle *e, Paddle *p);
     void update(void);
 };
 

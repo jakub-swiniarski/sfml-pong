@@ -48,7 +48,7 @@ void run(void) {
     sf::Clock dt_clock;
     EventHandler event_handler(&window);
     InputProcessor input_processor(&player);
-    Observer observer(&ball, &player, &enemy);
+    Observer observer(&ball, &enemy, &player);
 
     while (window.isOpen()) {
         float dt = dt_clock.restart().asSeconds();
