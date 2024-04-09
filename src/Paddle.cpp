@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <string>
 
 #include "Ball.hpp"
@@ -39,10 +40,7 @@ bool Paddle::ball_collision_check(Ball *b) {
 }
 
 void Paddle::border_check(void) {
-    if (getPosition().y <= 0.f)
-        setPosition(getPosition().x, 0.f);
-    else if (getPosition().y + getSize().y >= SCREEN_HEIGHT)
-        setPosition(getPosition().x, SCREEN_HEIGHT - getSize().y);
+    setPosition(getPosition().x, std::clamp(getPosition().y, 0.f, (float)SCREEN_HEIGHT - getSize().y));
 }
 
 void Paddle::update_counter(void) {
