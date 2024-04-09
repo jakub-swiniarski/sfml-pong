@@ -4,11 +4,11 @@
 <img src="https://github.com/jakub-swiniarski/sfml-pong/assets/77209709/913f3b88-ea78-49c6-9386-0e709f7636bd">
 
 ## How to install?
-### Prerequisites:
-- g++,
-- sfml,
-- git,
-- make.
+### Prerequisites
+- g++
+- sfml
+- git
+- make
 ### Compile & install
 ```shell
 git clone https://github.com/jakub-swiniarski/sfml-pong.git
