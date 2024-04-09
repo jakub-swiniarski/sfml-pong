@@ -53,24 +53,19 @@ void run(void) {
     while (window.isOpen()) {
         float dt = dt_clock.restart().asSeconds();
 
+        ai_controller.update(dt);
+        ball.update(dt);
         event_handler.update();
-
         input_processor.update(dt);
+        observer.update();
+        
+        enemy.border_check();
         player.border_check();
 
-        ball.update(dt);
-
-        if (enemy.ball_collision_check(&ball)
-        || player.ball_collision_check(&ball)
-        || ball.border_check())
+        if (ball.border_check()
+        || enemy.ball_collision_check(&ball)
+        || player.ball_collision_check(&ball))
             pop_sound.play();
-
-        //AI - TODO: rename paddle to enemy?
-        ai_controller.update(dt);
-
-        enemy.border_check();
-
-        observer.update();
         
         draw();
     }
