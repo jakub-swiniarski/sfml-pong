@@ -30,3 +30,9 @@ sudo make clean uninstall
 Up arrow - move up <br/>
 Down arrow - move down <br/>
 Escape - exit the game
+
+## Customization
+Edit src/config.hpp and run:
+```shell
+sudo make install 
+```
