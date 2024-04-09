@@ -3,6 +3,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 
+#include "AIController.hpp"
 #include "Ball.hpp"
 #include "EventHandler.hpp"
 #include "InputProcessor.hpp"
@@ -43,6 +44,7 @@ void draw(void) {
 }
 
 void run(void) {
+    AIController ai_controller(&ball, &enemy);
     sf::Clock dt_clock;
     EventHandler event_handler(&window);
     InputProcessor input_processor(&player);
@@ -63,10 +65,8 @@ void run(void) {
         || ball.border_check())
             pop_sound.play();
 
-        if (enemy.getPosition().y + enemy.getSize().y / 2.f > ball.getPosition().y + ball.getRadius() / 2.f)
-            enemy.move(0.f, -ENEMY_SPEED_Y * dt);
-        else
-            enemy.move(0.f, ENEMY_SPEED_Y * dt);
+        //AI - TODO: rename paddle to enemy?
+        ai_controller.update(dt);
 
         enemy.border_check();
 
