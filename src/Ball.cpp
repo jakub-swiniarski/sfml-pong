@@ -22,7 +22,7 @@ bool Ball::border_check(void) {
 
 void Ball::bounce_x(void) {
     speed_x *= -1;
-    speed_x += (speed_x > 0) ? 50 : -50;
+    speed_x += (speed_x > 0) ? BALL_SPEED_BOOST : -BALL_SPEED_BOOST;
 }
 
 void Ball::bounce_y(void) {
