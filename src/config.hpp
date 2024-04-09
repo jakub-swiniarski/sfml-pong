@@ -21,12 +21,12 @@ static const sf::Color PLAYER_COUNTER_COLOR(170, 255, 170);
 static const unsigned int FONT_SIZE = 120;
 static const float BALL_RADIUS = 10.f;
 static const float BALL_SPEED_BOOST = 50.f;
-static const float BALL_START_SPEED_X = 240.f;
-static const float BALL_START_SPEED_Y = 240.f;
+static const float BALL_START_SPEED_X = 200.f;
+static const float BALL_START_SPEED_Y = 200.f;
 static const float COUNTER_SHIFT_X = 300.f;
 static const float ENEMY_SPEED_Y = 200.f;
 static const float PLAYER_SPEED_Y = 200.f;
-static const float PADDLE_WIDTH = 10.f;
+static const float PADDLE_WIDTH = 20.f;
 static const float PADDLE_HEIGHT = 100.f;
 
 #endif /* CONFIG_HPP */
