@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "Ball.hpp"
 
 #include "config.hpp"
@@ -12,12 +14,9 @@ Ball::Ball(float x, float y) {
 }
 
 bool Ball::border_check(void) {
-    if (getPosition().y <= 0.f) {
-        setPosition(getPosition().x, 0.f);
-        bounce_y();
-        return 1;
-    } else if (getPosition().y >= SCREEN_HEIGHT - getRadius()) {
-        setPosition(getPosition().x, SCREEN_HEIGHT - getRadius());
+    if (getPosition().y <= 0.f
+    || getPosition().y >= SCREEN_HEIGHT - getRadius()) {
+        setPosition(getPosition().x, std::clamp(getPosition().y, 0.f, (float)SCREEN_HEIGHT - getRadius()));
         bounce_y();
         return 1;
     }
