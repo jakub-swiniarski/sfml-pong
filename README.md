@@ -1,7 +1,7 @@
 # Pong
 
 ## Screenshot
-<img src="https://github.com/jakub-swiniarski/sfml-pong/assets/77209709/913f3b88-ea78-49c6-9386-0e709f7636bd">
+![image](https://github.com/jakub-swiniarski/sfml-pong/assets/77209709/aff5f036-6a91-41e1-a4f9-76ec1b6f21fc)
 
 ## How to install?
 ### Prerequisites
