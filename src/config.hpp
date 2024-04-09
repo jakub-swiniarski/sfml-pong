@@ -11,7 +11,7 @@ static const unsigned int SCREEN_HEIGHT = 720;
 static const unsigned int FPS = 60;
 
 /* appearance */
-static const sf::Color BALL_COLOR(255, 255, 255); /* R, G, B */
+static const sf::Color BALL_COLOR(255, 255, 255);
 static const sf::Color ENEMY_COLOR(255, 0, 0);
 static const sf::Color ENEMY_COUNTER_COLOR(255, 170, 170);
 static const sf::Color PLAYER_COLOR(0, 255, 0);
