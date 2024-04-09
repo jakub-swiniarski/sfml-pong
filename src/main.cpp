@@ -56,12 +56,11 @@ void run(void) {
         input_processor.update(dt);
         player.border_check();
 
-        if (ball.border_check())
-            pop_sound.play();
         ball.update(dt);
 
-        if ((enemy.ball_collision_check(&ball))
-        || player.ball_collision_check(&ball))
+        if (enemy.ball_collision_check(&ball)
+        || player.ball_collision_check(&ball)
+        || ball.border_check())
             pop_sound.play();
 
         if (enemy.getPosition().y + enemy.getSize().y / 2.f > ball.getPosition().y + ball.getRadius() / 2.f)

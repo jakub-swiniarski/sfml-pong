@@ -1,5 +1,5 @@
-#ifndef INPUTPROCESSOR_H
-#define INPUTPROCESSOR_H
+#ifndef INPUTPROCESSOR_HPP
+#define INPUTPROCESSOR_HPP
 
 class Paddle;
 
@@ -11,4 +11,4 @@ public:
     void update(float mod);
 };
 
-#endif /* INPUTPROCESSOR_H */
+#endif /* INPUTPROCESSOR_HPP */
