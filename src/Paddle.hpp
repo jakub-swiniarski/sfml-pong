@@ -1,5 +1,5 @@
-#ifndef PADDLE_H
-#define PADDLE_H
+#ifndef PADDLE_HPP
+#define PADDLE_HPP
 
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
@@ -19,4 +19,4 @@ public:
     void update_counter(void);
 };
 
-#endif /* PADDLE_H */
+#endif /* PADDLE_HPP */

@@ -1,5 +1,5 @@
-#ifndef EVENTHANDLER_H
-#define EVENTHANDLER_H
+#ifndef EVENTHANDLER_HPP
+#define EVENTHANDLER_HPP
 
 #include <SFML/Window/Event.hpp>
 
@@ -16,4 +16,4 @@ public:
     void update(void);
 };
 
-#endif /* EVENTHANDLER_H */
+#endif /* EVENTHANDLER_HPP */
