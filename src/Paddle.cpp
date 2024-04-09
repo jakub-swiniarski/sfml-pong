@@ -19,11 +19,23 @@ Paddle::Paddle(float x, float y, sf::Color p_col, sf::Color t_col) {
 }
 
 bool Paddle::ball_collision_check(Ball *b) {
-    if (getGlobalBounds().intersects(b->getGlobalBounds())) {
+    if (!getGlobalBounds().intersects(b->getGlobalBounds()))
+        return 0;
+
+    if (getGlobalBounds().contains(b->getPosition().x + b->getRadius() / 2.f, b->getPosition().y)) { /* top of the ball */
+        b->setPosition(b->getPosition().x, b->getPosition().y + 5.f); /* we move the ball to prevent it from getting stuck */
+        b->bounce_y();
+    } else if (getGlobalBounds().contains(b->getPosition().x + b->getRadius() / 2.f, b->getPosition().y + b->getRadius())) { /* bottom of the ball */
+        b->setPosition(b->getPosition().x, b->getPosition().y - 5.f);
+        b->bounce_y();
+    } else if (getGlobalBounds().contains(b->getPosition().x, b->getPosition().y + b->getRadius() / 2.f)) { /* left side of the ball */
+        b->setPosition(b->getPosition().x + 5.f, b->getPosition().y);
         b->bounce_x();
-        return 1;
-    } 
-    return 0;
+    } else if (getGlobalBounds().contains(b->getPosition().x + b->getRadius(), b->getPosition().y + b->getRadius() / 2.f)) { /* right side of the ball */
+        b->setPosition(b->getPosition().x - 5.f, b->getPosition().y);
+        b->bounce_x();
+    }
+    return 1;
 }
 
 void Paddle::border_check(void) {
