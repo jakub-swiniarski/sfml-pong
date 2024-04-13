@@ -23,17 +23,17 @@ bool Paddle::ball_collision_check(Ball *b) {
     if (!getGlobalBounds().intersects(b->getGlobalBounds()))
         return 0;
 
-    if (getGlobalBounds().contains(b->getPosition().x, b->getPosition().y + b->getRadius() / 2.f)) { /* left side of the ball */
+    if (getGlobalBounds().contains(b->getPosition().x, b->getPosition().y + b->getRadius())) { /* left side of the ball */
         b->setPosition(getPosition().x + getSize().x, b->getPosition().y); /* we move the ball to prevent it from getting stuck */
         b->bounce_x();
-    } else if (getGlobalBounds().contains(b->getPosition().x + b->getRadius(), b->getPosition().y + b->getRadius() / 2.f)) { /* right side of the ball */
-        b->setPosition(getPosition().x - b->getRadius(), b->getPosition().y);
+    } else if (getGlobalBounds().contains(b->getPosition().x + 2.f * b->getRadius(), b->getPosition().y + b->getRadius())) { /* right side of the ball */
+        b->setPosition(getPosition().x - 2.f * b->getRadius(), b->getPosition().y);
         b->bounce_x();
-    } else if (getGlobalBounds().contains(b->getPosition().x + b->getRadius() / 2.f, b->getPosition().y)) { /* top of the ball */
+    } else if (getGlobalBounds().contains(b->getPosition().x + b->getRadius(), b->getPosition().y)) { /* top of the ball */
         b->setPosition(b->getPosition().x, getPosition().y + getSize().y);
         b->bounce_y();
-    } else if (getGlobalBounds().contains(b->getPosition().x + b->getRadius() / 2.f, b->getPosition().y + b->getRadius())) { /* bottom of the ball */
-        b->setPosition(b->getPosition().x, getPosition().y - b->getRadius());
+    } else if (getGlobalBounds().contains(b->getPosition().x + b->getRadius(), b->getPosition().y + 2.f * b->getRadius())) { /* bottom of the ball */
+        b->setPosition(b->getPosition().x, getPosition().y - 2.f * b->getRadius());
         b->bounce_y();
     }
     return 1;
