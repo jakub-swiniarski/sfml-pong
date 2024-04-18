@@ -7,7 +7,7 @@
 
 class Ball;
 
-class Paddle: public sf::RectangleShape {
+class Paddle : public sf::RectangleShape {
     int score;
 
 public:

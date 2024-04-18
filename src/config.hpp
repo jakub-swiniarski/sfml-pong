@@ -4,29 +4,29 @@
 #include <SFML/Graphics/Color.hpp>
 
 /* resolution */
-static const unsigned int SCREEN_WIDTH = 1280;
-static const unsigned int SCREEN_HEIGHT = 720;
+static const unsigned int screen_width = 1280;
+static const unsigned int screen_height = 720;
 
 /* framerate limit */
-static const unsigned int FPS = 60;
+static const unsigned int fps = 60;
 
 /* appearance */
-static const sf::Color BALL_COLOR(255, 255, 255);
-static const sf::Color ENEMY_COLOR(255, 0, 0);
-static const sf::Color ENEMY_COUNTER_COLOR(255, 170, 170);
-static const sf::Color PLAYER_COLOR(0, 255, 0);
-static const sf::Color PLAYER_COUNTER_COLOR(170, 255, 170);
+static const sf::Color ball_color(255, 255, 255);
+static const sf::Color enemy_color(255, 0, 0);
+static const sf::Color enemy_counter_color(255, 170, 170);
+static const sf::Color player_color(0, 255, 0);
+static const sf::Color player_counter_color(170, 255, 170);
 
 /* gameplay */
-static const unsigned int FONT_SIZE = 120;
-static const float BALL_RADIUS = 10.f;
-static const float BALL_SPEED_BOOST = 50.f;
-static const float BALL_START_SPEED_X = 200.f;
-static const float BALL_START_SPEED_Y = 220.f;
-static const float COUNTER_SHIFT_X = 300.f;
-static const float ENEMY_SPEED_Y = 200.f;
-static const float PLAYER_SPEED_Y = 200.f;
-static const float PADDLE_WIDTH = 20.f;
-static const float PADDLE_HEIGHT = 100.f;
+static const unsigned int font_size = 120;
+static const float ball_radius = 10.f;
+static const float ball_speed_boost = 50.f;
+static const float ball_start_speed_x = 200.f;
+static const float ball_start_speed_y = 220.f;
+static const float counter_shift_x = 300.f;
+static const float enemy_speed_y = 200.f;
+static const float player_speed_y = 200.f;
+static const float paddle_width = 20.f;
+static const float paddle_height = 100.f;
 
 #endif /* CONFIG_HPP */
