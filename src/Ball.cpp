@@ -5,18 +5,18 @@
 #include "config.hpp"
 
 Ball::Ball(float x, float y) {
-    setRadius(BALL_RADIUS);
-    setFillColor(BALL_COLOR);
+    setRadius(ball_radius);
+    setFillColor(ball_color);
     setPosition(x, y);
 
-    speed_x = BALL_START_SPEED_X;
-    speed_y = BALL_START_SPEED_Y;
+    speed_x = ball_start_speed_x;
+    speed_y = ball_start_speed_y;
 }
 
 bool Ball::border_check(void) {
     if (getPosition().y <= 0.f
-    || getPosition().y >= SCREEN_HEIGHT - getRadius()) {
-        setPosition(getPosition().x, std::clamp(getPosition().y, 0.f, (float)SCREEN_HEIGHT - getRadius()));
+    || getPosition().y >= screen_height - getRadius()) {
+        setPosition(getPosition().x, std::clamp(getPosition().y, 0.f, (float)screen_height - getRadius()));
         bounce_y();
         return 1;
     }
@@ -25,7 +25,7 @@ bool Ball::border_check(void) {
 
 void Ball::bounce_x(void) {
     speed_x *= -1;
-    speed_x += (speed_x > 0) ? BALL_SPEED_BOOST : -BALL_SPEED_BOOST;
+    speed_x += (speed_x > 0) ? ball_speed_boost : -ball_speed_boost;
 }
 
 void Ball::bounce_y(void) {
@@ -33,9 +33,9 @@ void Ball::bounce_y(void) {
 }
 
 void Ball::reset(void) {
-    setPosition(SCREEN_WIDTH / 2.f - getRadius(), SCREEN_HEIGHT / 2.f - getRadius());
-    speed_x = BALL_START_SPEED_X;
-    speed_y = BALL_START_SPEED_Y;
+    setPosition(screen_width / 2.f - getRadius(), screen_height / 2.f - getRadius());
+    speed_x = ball_start_speed_x;
+    speed_y = ball_start_speed_y;
 }
 
 void Ball::update(float mod) {

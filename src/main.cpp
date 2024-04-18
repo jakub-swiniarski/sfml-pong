@@ -18,16 +18,16 @@ static void run(void);
 static void setup(void);
 
 /* variables */
-static Ball ball(SCREEN_WIDTH / 2.f - BALL_RADIUS, SCREEN_HEIGHT / 2.f - BALL_RADIUS);
-static Paddle enemy(100.f, SCREEN_HEIGHT / 2.f - PADDLE_HEIGHT / 2, ENEMY_COLOR, ENEMY_COUNTER_COLOR);
+static Ball ball(screen_width / 2.f - ball_radius, screen_height / 2.f - ball_radius);
+static Paddle enemy(100.f, screen_height / 2.f - paddle_height / 2, enemy_color, enemy_counter_color);
 static sf::Font font;
-static Paddle player(SCREEN_WIDTH - PADDLE_WIDTH - 100.f, SCREEN_HEIGHT / 2.f - PADDLE_HEIGHT / 2, PLAYER_COLOR, PLAYER_COUNTER_COLOR);
+static Paddle player(screen_width - paddle_width - 100.f, screen_height / 2.f - paddle_height / 2, player_color, player_counter_color);
 static sf::Sound pop_sound;
 static sf::SoundBuffer pop_buffer;
-static sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Pong", sf::Style::None);
+static sf::RenderWindow window(sf::VideoMode(screen_width, screen_height), "Pong", sf::Style::None);
 
 /* constants */
-static const std::string FILEPATH = "res/";
+static const std::string filepath = "res/";
 
 /* function implementations */
 void draw(void) {
@@ -72,17 +72,17 @@ void run(void) {
 }
 
 void setup(void) {
-    window.setFramerateLimit(FPS);
+    window.setFramerateLimit(fps);
 
-    if (!font.loadFromFile(FILEPATH + "font.ttf"))
+    if (!font.loadFromFile(filepath + "font.ttf"))
         window.close();
     enemy.counter.setFont(font);
     player.counter.setFont(font);
 
-    enemy.counter.setPosition(COUNTER_SHIFT_X, 0.f); 
-    player.counter.setPosition(SCREEN_WIDTH - COUNTER_SHIFT_X - player.counter.getGlobalBounds().width, 0.f);
+    enemy.counter.setPosition(counter_shift_x, 0.f); 
+    player.counter.setPosition(screen_width - counter_shift_x - player.counter.getGlobalBounds().width, 0.f);
 
-    if (!pop_buffer.loadFromFile(FILEPATH + "pop.wav"))
+    if (!pop_buffer.loadFromFile(filepath + "pop.wav"))
         window.close(); 
     pop_sound.setBuffer(pop_buffer);
 }
