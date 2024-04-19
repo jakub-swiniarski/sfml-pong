@@ -14,7 +14,7 @@ public:
     sf::Text counter;
 
     Paddle(float x, float y, sf::Color p_col, sf::Color t_col);
-    bool ball_collision_check(Ball *b);
+    bool ball_collision_check(Ball *b) const;
     void border_check(void);
     void update_counter(void);
 };

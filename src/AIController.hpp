@@ -10,7 +10,7 @@ class AIController {
 
 public:
     AIController(Ball *b, Paddle *p);
-    void update(float mod);
+    void update(float mod) const;
 };
 
 #endif /* AICONTROLLER_HPP */
