@@ -10,7 +10,7 @@ class Observer {
 
 public:
     Observer(Ball *b, Paddle *e, Paddle *p);
-    void update(void);
+    void update(void) const;
 };
 
 #endif /* OBSERVER_HPP */

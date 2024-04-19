@@ -18,16 +18,16 @@ static void run(void);
 static void setup(void);
 
 /* variables */
-static Ball ball(SCREEN_WIDTH / 2.f - BALL_RADIUS, SCREEN_HEIGHT / 2.f - BALL_RADIUS);
-static Paddle enemy(100.f, SCREEN_HEIGHT / 2.f - PADDLE_HEIGHT / 2, ENEMY_COLOR, ENEMY_COUNTER_COLOR);
+static Ball ball(cfg::window::width / 2.f - cfg::ball::radius, cfg::window::height / 2.f - cfg::ball::radius);
+static Paddle enemy(100.f, cfg::window::height / 2.f - cfg::paddle::height / 2, cfg::enemy::color, cfg::enemy::counter_color);
 static sf::Font font;
-static Paddle player(SCREEN_WIDTH - PADDLE_WIDTH - 100.f, SCREEN_HEIGHT / 2.f - PADDLE_HEIGHT / 2, PLAYER_COLOR, PLAYER_COUNTER_COLOR);
+static Paddle player(cfg::window::width - cfg::paddle::width - 100.f, cfg::window::height / 2.f - cfg::paddle::height / 2, cfg::player::color, cfg::player::counter_color);
 static sf::Sound pop_sound;
 static sf::SoundBuffer pop_buffer;
-static sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Pong", sf::Style::None);
+static sf::RenderWindow window(sf::VideoMode(cfg::window::width, cfg::window::height), "Pong", sf::Style::None);
 
 /* constants */
-static const std::string FILEPATH = "/usr/local/share/pong/";
+static const std::string filepath = "/usr/local/share/pong/";
 
 /* function implementations */
 void draw(void) {
@@ -37,8 +37,8 @@ void draw(void) {
     window.draw(enemy);
     window.draw(player);
 
-    window.draw(enemy.counter);
-    window.draw(player.counter);
+    window.draw(enemy.get_counter());
+    window.draw(player.get_counter());
     
     window.display();
 }
@@ -72,17 +72,17 @@ void run(void) {
 }
 
 void setup(void) {
-    window.setFramerateLimit(FPS);
+    window.setFramerateLimit(cfg::window::fps);
 
-    if (!font.loadFromFile(FILEPATH + "font.ttf"))
+    if (!font.loadFromFile(filepath + "font.ttf"))
         window.close();
-    enemy.counter.setFont(font);
-    player.counter.setFont(font);
+    enemy.get_counter().setFont(font);
+    player.get_counter().setFont(font);
 
-    enemy.counter.setPosition(COUNTER_SHIFT_X, 0.f); 
-    player.counter.setPosition(SCREEN_WIDTH - COUNTER_SHIFT_X - player.counter.getGlobalBounds().width, 0.f);
+    enemy.get_counter().setPosition(cfg::counter::shift_x, 0.f); 
+    player.get_counter().setPosition(cfg::window::width - cfg::counter::shift_x - player.get_counter().getGlobalBounds().width, 0.f);
 
-    if (!pop_buffer.loadFromFile(FILEPATH + "pop.wav"))
+    if (!pop_buffer.loadFromFile(filepath + "pop.wav"))
         window.close(); 
     pop_sound.setBuffer(pop_buffer);
 }

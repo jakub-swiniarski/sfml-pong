@@ -10,11 +10,11 @@ Observer::Observer(Ball *b, Paddle *e, Paddle *p) {
     player = p;
 }
 
-void Observer::update(void) {
+void Observer::update(void) const {
     if (ball->getPosition().x <= 0.f) {
         player->update_counter();
         ball->reset();
-    } else if (ball->getPosition().x >= SCREEN_WIDTH - ball->getRadius()) {
+    } else if (ball->getPosition().x >= cfg::window::width - ball->getRadius()) {
         enemy->update_counter();
         ball->reset();
     }
