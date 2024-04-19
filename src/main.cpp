@@ -27,7 +27,7 @@ static sf::SoundBuffer pop_buffer;
 static sf::RenderWindow window(sf::VideoMode(cfg::window::width, cfg::window::height), "Pong", sf::Style::None);
 
 /* constants */
-static const std::string filepath = "res/";
+static const std::string filepath = "/usr/local/share/pong/";
 
 /* function implementations */
 void draw(void) {
