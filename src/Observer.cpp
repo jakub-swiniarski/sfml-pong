@@ -10,7 +10,7 @@ Observer::Observer(Ball *b, Paddle *e, Paddle *p) {
     player = p;
 }
 
-void Observer::update(void) {
+void Observer::update(void) const {
     if (ball->getPosition().x <= 0.f) {
         player->update_counter();
         ball->reset();

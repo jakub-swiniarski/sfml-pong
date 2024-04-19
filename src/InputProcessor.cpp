@@ -9,7 +9,7 @@ InputProcessor::InputProcessor(Paddle *p) {
     player = p;
 }
 
-void InputProcessor::update(float mod) {
+void InputProcessor::update(float mod) const {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         player->move(0.f, -player_speed_y * mod);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))

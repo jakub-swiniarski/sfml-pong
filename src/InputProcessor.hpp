@@ -8,7 +8,7 @@ class InputProcessor {
 
 public:
     InputProcessor(Paddle *p);
-    void update(float mod);
+    void update(float mod) const;
 };
 
 #endif /* INPUTPROCESSOR_HPP */

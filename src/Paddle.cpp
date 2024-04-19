@@ -19,7 +19,7 @@ Paddle::Paddle(float x, float y, sf::Color p_col, sf::Color t_col) {
     counter.setPosition(0.f, 0.f);
 }
 
-bool Paddle::ball_collision_check(Ball *b) {
+bool Paddle::ball_collision_check(Ball *b) const {
     if (!getGlobalBounds().intersects(b->getGlobalBounds()))
         return 0;
 
