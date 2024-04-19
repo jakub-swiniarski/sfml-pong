@@ -18,13 +18,13 @@ static void run(void);
 static void setup(void);
 
 /* variables */
-static Ball ball(screen_width / 2.f - ball_radius, screen_height / 2.f - ball_radius);
-static Paddle enemy(100.f, screen_height / 2.f - paddle_height / 2, enemy_color, enemy_counter_color);
+static Ball ball(cfg::window::width / 2.f - cfg::ball::radius, cfg::window::height / 2.f - cfg::ball::radius);
+static Paddle enemy(100.f, cfg::window::height / 2.f - cfg::paddle::height / 2, cfg::enemy::color, cfg::enemy::counter_color);
 static sf::Font font;
-static Paddle player(screen_width - paddle_width - 100.f, screen_height / 2.f - paddle_height / 2, player_color, player_counter_color);
+static Paddle player(cfg::window::width - cfg::paddle::width - 100.f, cfg::window::height / 2.f - cfg::paddle::height / 2, cfg::player::color, cfg::player::counter_color);
 static sf::Sound pop_sound;
 static sf::SoundBuffer pop_buffer;
-static sf::RenderWindow window(sf::VideoMode(screen_width, screen_height), "Pong", sf::Style::None);
+static sf::RenderWindow window(sf::VideoMode(cfg::window::width, cfg::window::height), "Pong", sf::Style::None);
 
 /* constants */
 static const std::string filepath = "res/";
@@ -72,15 +72,15 @@ void run(void) {
 }
 
 void setup(void) {
-    window.setFramerateLimit(fps);
+    window.setFramerateLimit(cfg::window::fps);
 
     if (!font.loadFromFile(filepath + "font.ttf"))
         window.close();
     enemy.counter.setFont(font);
     player.counter.setFont(font);
 
-    enemy.counter.setPosition(counter_shift_x, 0.f); 
-    player.counter.setPosition(screen_width - counter_shift_x - player.counter.getGlobalBounds().width, 0.f);
+    enemy.counter.setPosition(cfg::counter::shift_x, 0.f); 
+    player.counter.setPosition(cfg::window::width - cfg::counter::shift_x - player.counter.getGlobalBounds().width, 0.f);
 
     if (!pop_buffer.loadFromFile(filepath + "pop.wav"))
         window.close(); 

@@ -7,14 +7,14 @@
 #include "config.hpp"
 
 Paddle::Paddle(float x, float y, sf::Color p_col, sf::Color t_col) {
-    setSize(sf::Vector2f(paddle_width, paddle_height));
+    setSize(sf::Vector2f(cfg::paddle::width, cfg::paddle::height));
     setFillColor(p_col);
     setPosition(x, y);
 
     score = 0;
 
     counter.setString("0");
-    counter.setCharacterSize(font_size);
+    counter.setCharacterSize(cfg::counter::font_size);
     counter.setFillColor(t_col);
     counter.setPosition(0.f, 0.f);
 }
@@ -40,7 +40,7 @@ bool Paddle::ball_collision_check(Ball *b) const {
 }
 
 void Paddle::border_check(void) {
-    setPosition(getPosition().x, std::clamp(getPosition().y, 0.f, (float)screen_height - getSize().y));
+    setPosition(getPosition().x, std::clamp(getPosition().y, 0.f, (float)cfg::window::height - getSize().y));
 }
 
 void Paddle::update_counter(void) {
