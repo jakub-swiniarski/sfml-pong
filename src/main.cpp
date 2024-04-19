@@ -37,8 +37,8 @@ void draw(void) {
     window.draw(enemy);
     window.draw(player);
 
-    window.draw(enemy.counter);
-    window.draw(player.counter);
+    window.draw(enemy.get_counter());
+    window.draw(player.get_counter());
     
     window.display();
 }
@@ -76,11 +76,11 @@ void setup(void) {
 
     if (!font.loadFromFile(filepath + "font.ttf"))
         window.close();
-    enemy.counter.setFont(font);
-    player.counter.setFont(font);
+    enemy.get_counter().setFont(font);
+    player.get_counter().setFont(font);
 
-    enemy.counter.setPosition(cfg::counter::shift_x, 0.f); 
-    player.counter.setPosition(cfg::window::width - cfg::counter::shift_x - player.counter.getGlobalBounds().width, 0.f);
+    enemy.get_counter().setPosition(cfg::counter::shift_x, 0.f); 
+    player.get_counter().setPosition(cfg::window::width - cfg::counter::shift_x - player.get_counter().getGlobalBounds().width, 0.f);
 
     if (!pop_buffer.loadFromFile(filepath + "pop.wav"))
         window.close(); 

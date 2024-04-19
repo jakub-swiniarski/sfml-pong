@@ -43,6 +43,10 @@ void Paddle::border_check(void) {
     setPosition(getPosition().x, std::clamp(getPosition().y, 0.f, (float)cfg::window::height - getSize().y));
 }
 
+sf::Text &Paddle::get_counter(void) {
+    return counter;
+}
+
 void Paddle::update_counter(void) {
     score++;
     counter.setString(std::to_string(score));
