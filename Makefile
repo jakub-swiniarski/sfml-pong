@@ -16,15 +16,15 @@ run: all
 	./pong
 
 clean:
-	rm *.o pong
+	rm -f *.o pong
 
 install: all
 	mkdir -p /usr/local/share/pong/
-	cp pong /usr/local/bin/
-	cp res/* /usr/local/share/pong/
+	cp -f pong /usr/local/bin/
+	cp -f res/* /usr/local/share/pong/
 
 uninstall:
-	rm /usr/local/bin/pong
+	rm -f /usr/local/bin/pong
 	rm -rf /usr/local/share/pong
 
 .PHONY: all run clean install uninstall
