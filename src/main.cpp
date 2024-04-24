@@ -12,7 +12,6 @@
 
 #include "config.hpp"
 
-//a
 /* function declarations */
 static void draw(void);
 static void run(void);
