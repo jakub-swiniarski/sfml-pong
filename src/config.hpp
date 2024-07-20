@@ -12,7 +12,7 @@ namespace cfg {
 
     namespace counter {
         static constexpr unsigned int font_size = 120;
-        static constexpr float shift_x          = 300.0f;
+        static constexpr float        shift_x   = 300.0f;
     }
 
     namespace ball {
