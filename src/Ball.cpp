@@ -12,8 +12,8 @@ Ball::Ball(float x, float y)
 }
 
 bool Ball::border_check(void) {
-    if (getPosition().y <= 0.f
-    || getPosition().y >= cfg::window::height - getRadius()) {
+    if (getPosition().y <= 0.f ||
+        getPosition().y >= cfg::window::height - getRadius()) {
         setPosition(getPosition().x, std::clamp(getPosition().y, 0.0f, cfg::window::height - getRadius()));
         bounce_y();
         return 1;
