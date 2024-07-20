@@ -20,6 +20,9 @@ void Observer::update(void) {
         ball->reset();
     }
 
+    enemy->border_check();
+    player->border_check();
+
     if (ball->border_check() ||
         enemy->ball_collision_check(*ball) ||
         player->ball_collision_check(*ball))
