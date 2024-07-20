@@ -35,11 +35,12 @@ bool Paddle::ball_collision_check(Ball& ball) const {
         ball.setPosition(ball.getPosition().x, getPosition().y - 2.f * ball.getRadius());
         ball.bounce_y();
     }
+
     return 1;
 }
 
 void Paddle::border_check(void) {
-    setPosition(getPosition().x, std::clamp(getPosition().y, 0.f, (float)cfg::window::height - getSize().y));
+    setPosition(getPosition().x, std::clamp(getPosition().y, 0.f, cfg::window::height - getSize().y));
 }
 
 sf::Text& Paddle::get_counter(void) {
