@@ -5,12 +5,14 @@ class Ball;
 class Paddle;
 
 class Observer {
-    Paddle *player, *enemy;
-    Ball *ball;
+    Paddle* player;
+    Paddle* enemy;
+    Ball* ball;
 
 public:
-    Observer(Ball *b, Paddle *e, Paddle *p);
+    Observer(Ball* ball, Paddle* enemy, Paddle* player);
+    
     void update(void) const;
 };
 
-#endif /* OBSERVER_HPP */
+#endif // OBSERVER_HPP

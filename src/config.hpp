@@ -41,4 +41,4 @@ namespace cfg {
     }
 }
 
-#endif /* CONFIG_HPP */
+#endif // CONFIG_HPP

@@ -8,12 +8,13 @@ namespace sf {
 }
 
 class EventHandler {
-    sf::Event event;
-    sf::Window *window;
+    sf::Event   event;
+    sf::Window* window;
 
 public:
-    EventHandler(sf::Window *w);
+    EventHandler(sf::Window* window);
+
     void update(void);
 };
 
-#endif /* EVENTHANDLER_HPP */
+#endif // EVENTHANDLER_HPP

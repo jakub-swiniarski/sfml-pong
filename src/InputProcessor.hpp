@@ -4,11 +4,12 @@
 class Paddle;
 
 class InputProcessor {
-    Paddle *player;
+    Paddle* paddle;
 
 public:
-    InputProcessor(Paddle *p);
+    InputProcessor(Paddle* paddle);
+
     void update(float mod) const;
 };
 
-#endif /* INPUTPROCESSOR_HPP */
+#endif // INPUTPROCESSOR_HPP
