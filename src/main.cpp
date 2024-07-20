@@ -1,7 +1,8 @@
-#include "App.hpp"
 #include <exception>
 #include <iostream>
 #include <stdexcept>
+
+#include "App.hpp"
 
 int main(void) {
     try {
