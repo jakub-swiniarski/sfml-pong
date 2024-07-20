@@ -10,6 +10,7 @@ void App::setup(void) {
 
     if (!font_digital.loadFromFile(res_path + "digital.ttf"))
         throw std::runtime_error("Failed to load font.");
+
     enemy.get_counter().setFont(font_digital);
     player.get_counter().setFont(font_digital);
 
