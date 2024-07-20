@@ -5,11 +5,11 @@ class Ball;
 class Paddle;
 
 class AIController {
-    Ball*   ball;
-    Paddle* paddle;
+    Ball&   ball;
+    Paddle& paddle;
 
 public:
-    AIController(Ball* ball, Paddle* paddle);
+    AIController(Ball& ball, Paddle& paddle);
     void update(float mod) const;
 };
 

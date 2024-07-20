@@ -4,10 +4,10 @@
 class Paddle;
 
 class InputProcessor {
-    Paddle* paddle;
+    Paddle& paddle;
 
 public:
-    InputProcessor(Paddle* paddle);
+    InputProcessor(Paddle& paddle);
 
     void update(float mod) const;
 };
