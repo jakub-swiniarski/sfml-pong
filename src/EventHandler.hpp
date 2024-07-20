@@ -9,10 +9,10 @@ namespace sf {
 
 class EventHandler {
     sf::Event   event;
-    sf::Window* window;
+    sf::Window& window;
 
 public:
-    EventHandler(sf::Window* window);
+    EventHandler(sf::Window& window);
 
     void update(void);
 };
