@@ -12,15 +12,15 @@
 #include "Paddle.hpp"
 
 class App {
-    //-----CORE-----//
+    // ----- CORE ----- //
     sf::RenderWindow window;
 
-    //-----ACTORS-----//
+    // ----- ACTORS ----- //
     Ball   ball;
     Paddle enemy;
     Paddle player;
     
-    //-----RESOURCES-----//
+    // ----- RESOURCES ----- //
     const std::string res_path =
 #ifdef DEBUG
     "res/"

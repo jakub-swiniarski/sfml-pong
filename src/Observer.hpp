@@ -8,12 +8,12 @@ class Ball;
 class Paddle;
 
 class Observer {
-    //-----ACTORS-----//
+    // ----- ACTORS ----- //
     Paddle& player;
     Paddle& enemy;
     Ball&   ball;
 
-    //-----OTHER-----//
+    // ----- OTHER ----- //
     sf::Sound sound_pop;
 
 public:
