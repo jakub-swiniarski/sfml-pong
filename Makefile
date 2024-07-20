@@ -5,7 +5,7 @@ OBJ = $(patsubst src/%.cpp, %.o, $(SRC))
 all: pong
 
 %.o: src/%.cpp
-	g++ -c -O2 -DDEBUG $<
+	g++ -c -O2 $<
 
 $(OBJ): $(HDR)
 
