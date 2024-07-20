@@ -12,7 +12,7 @@ namespace cfg {
 
     namespace counter {
         inline constexpr unsigned int font_size = 120;
-        inline constexpr float        shift_x   = 300.0f;
+        inline constexpr float        offset_x  = 300.0f;
     }
 
     namespace ball {
@@ -24,8 +24,9 @@ namespace cfg {
     }
 
     namespace paddle {
-        inline constexpr float width  = 20.0f;
-        inline constexpr float height = 100.0f;
+        inline constexpr float width    = 20.0f;
+        inline constexpr float height   = 100.0f;
+        inline constexpr float offset_x = 100.0f;
     }
 
     namespace enemy {
