@@ -6,12 +6,11 @@
 
 #include "config.hpp"
 
-Paddle::Paddle(float x, float y, sf::Color p_col, sf::Color t_col) {
+Paddle::Paddle(float x, float y, sf::Color p_col, sf::Color t_col)
+    : score(0) {
     setSize(sf::Vector2f(cfg::paddle::width, cfg::paddle::height));
     setFillColor(p_col);
     setPosition(x, y);
-
-    score = 0;
 
     counter.setString("0");
     counter.setCharacterSize(cfg::counter::font_size);
@@ -19,22 +18,22 @@ Paddle::Paddle(float x, float y, sf::Color p_col, sf::Color t_col) {
     counter.setPosition(0.f, 0.f);
 }
 
-bool Paddle::ball_collision_check(Ball *b) const {
-    if (!getGlobalBounds().intersects(b->getGlobalBounds()))
+bool Paddle::ball_collision_check(Ball& ball) const {
+    if (!getGlobalBounds().intersects(ball.getGlobalBounds()))
         return 0;
 
-    if (getGlobalBounds().contains(b->getPosition().x, b->getPosition().y + b->getRadius())) { /* left side of the ball */
-        b->setPosition(getPosition().x + getSize().x, b->getPosition().y); /* we move the ball to prevent it from getting stuck */
-        b->bounce_x();
-    } else if (getGlobalBounds().contains(b->getPosition().x + 2.f * b->getRadius(), b->getPosition().y + b->getRadius())) { /* right side of the ball */
-        b->setPosition(getPosition().x - 2.f * b->getRadius(), b->getPosition().y);
-        b->bounce_x();
-    } else if (getGlobalBounds().contains(b->getPosition().x + b->getRadius(), b->getPosition().y)) { /* top of the ball */
-        b->setPosition(b->getPosition().x, getPosition().y + getSize().y);
-        b->bounce_y();
-    } else if (getGlobalBounds().contains(b->getPosition().x + b->getRadius(), b->getPosition().y + 2.f * b->getRadius())) { /* bottom of the ball */
-        b->setPosition(b->getPosition().x, getPosition().y - 2.f * b->getRadius());
-        b->bounce_y();
+    if (getGlobalBounds().contains(ball.getPosition().x, ball.getPosition().y + ball.getRadius())) { // left side of the ball
+        ball.setPosition(getPosition().x + getSize().x, ball.getPosition().y); // we move the ball to prevent it from getting stuck
+        ball.bounce_x();
+    } else if (getGlobalBounds().contains(ball.getPosition().x + 2.f * ball.getRadius(), ball.getPosition().y + ball.getRadius())) { // right side of the ball
+        ball.setPosition(getPosition().x - 2.f * ball.getRadius(), ball.getPosition().y);
+        ball.bounce_x();
+    } else if (getGlobalBounds().contains(ball.getPosition().x + ball.getRadius(), ball.getPosition().y)) { // top of the ball
+        ball.setPosition(ball.getPosition().x, getPosition().y + getSize().y);
+        ball.bounce_y();
+    } else if (getGlobalBounds().contains(ball.getPosition().x + ball.getRadius(), ball.getPosition().y + 2.f * ball.getRadius())) { // bottom of the ball
+        ball.setPosition(ball.getPosition().x, getPosition().y - 2.f * ball.getRadius());
+        ball.bounce_y();
     }
     return 1;
 }
@@ -43,7 +42,7 @@ void Paddle::border_check(void) {
     setPosition(getPosition().x, std::clamp(getPosition().y, 0.f, (float)cfg::window::height - getSize().y));
 }
 
-sf::Text &Paddle::get_counter(void) {
+sf::Text& Paddle::get_counter(void) {
     return counter;
 }
 

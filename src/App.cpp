@@ -39,8 +39,8 @@ void App::run(void) {
         player.border_check();
 
         if (ball.border_check() ||
-            enemy.ball_collision_check(&ball) ||
-            player.ball_collision_check(&ball))
+            enemy.ball_collision_check(ball) ||
+            player.ball_collision_check(ball))
             pop_sound.play();
         
         draw();

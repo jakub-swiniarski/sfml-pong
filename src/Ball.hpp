@@ -2,12 +2,14 @@
 #define BALL_HPP
 
 #include <SFML/Graphics/CircleShape.hpp>
+#include <SFML/System/Vector2.hpp>
 
 class Ball : public sf::CircleShape {
-    float speed_x, speed_y;
+    sf::Vector2f speed;
 
 public:
     Ball(float x, float y);
+
     bool border_check(void);
     void bounce_x(void);
     void bounce_y(void);
@@ -15,4 +17,4 @@ public:
     void update(float mod);
 };
 
-#endif /* BALL_HPP */
+#endif // BALL_HPP
