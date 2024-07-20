@@ -1,8 +1,9 @@
+#include <stdexcept>
+
 #include "App.hpp"
 #include "EventHandler.hpp"
 
 #include "config.hpp"
-#include <stdexcept>
 
 void App::setup(void) {
     window.setFramerateLimit(cfg::window::fps);

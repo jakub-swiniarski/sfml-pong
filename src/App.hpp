@@ -17,7 +17,7 @@ class App {
     sf::RenderWindow window;
 
     //-----ACTORS-----//
-    Ball ball;
+    Ball   ball;
     Paddle enemy;
     Paddle player;
     
@@ -29,9 +29,9 @@ class App {
     "/usr/local/share/pong/"
 #endif // DEBUG
     ;
-    sf::Font font;
+    sf::Font        font;
     sf::SoundBuffer pop_buffer;
-    sf::Sound pop_sound;
+    sf::Sound       pop_sound;
 
     void setup(void);
     void run(void);
