@@ -22,11 +22,11 @@ void App::setup(void) {
 }
 
 void App::run(void) {
-    AIController ai_controller(&ball, &enemy);
-    sf::Clock dt_clock;
-    EventHandler event_handler(&window);
+    sf::Clock      dt_clock;
+    AIController   ai_controller(&ball, &enemy);
+    EventHandler   event_handler(&window);
     InputProcessor input_processor(&player);
-    Observer observer(&ball, &enemy, &player);
+    Observer       observer(&ball, &enemy, &player);
 
     while (window.isOpen()) {
         float dt = dt_clock.restart().asSeconds();
