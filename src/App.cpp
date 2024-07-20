@@ -2,12 +2,13 @@
 #include "EventHandler.hpp"
 
 #include "config.hpp"
+#include <stdexcept>
 
 void App::setup(void) {
     window.setFramerateLimit(cfg::window::fps);
 
     if (!font.loadFromFile(res_path + "font.ttf"))
-        window.close();
+        throw std::runtime_error("Failed to load font.");
     enemy.get_counter().setFont(font);
     player.get_counter().setFont(font);
 
@@ -15,7 +16,7 @@ void App::setup(void) {
     player.get_counter().setPosition(cfg::window::width - cfg::counter::shift_x - player.get_counter().getGlobalBounds().width, 0.f);
 
     if (!pop_buffer.loadFromFile(res_path + "pop.wav"))
-        window.close(); 
+        throw std::runtime_error("Failed to load sound.");
     pop_sound.setBuffer(pop_buffer);
 }
 
