@@ -1,7 +1,6 @@
 #ifndef APP_HPP
 #define APP_HPP
 
-#include <SFML/Audio/Sound.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
@@ -29,9 +28,8 @@ class App {
     "/usr/local/share/pong/"
 #endif // DEBUG
     ;
-    sf::Font        font;
-    sf::SoundBuffer pop_buffer;
-    sf::Sound       pop_sound;
+    sf::Font        font_digital;
+    sf::SoundBuffer sound_buffer_pop;
 
     void setup(void);
     void run(void);

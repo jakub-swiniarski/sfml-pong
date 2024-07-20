@@ -8,17 +8,16 @@
 void App::setup(void) {
     window.setFramerateLimit(cfg::window::fps);
 
-    if (!font.loadFromFile(res_path + "font.ttf"))
+    if (!font_digital.loadFromFile(res_path + "digital.ttf"))
         throw std::runtime_error("Failed to load font.");
-    enemy.get_counter().setFont(font);
-    player.get_counter().setFont(font);
+    enemy.get_counter().setFont(font_digital);
+    player.get_counter().setFont(font_digital);
 
     enemy.get_counter().setPosition(cfg::counter::shift_x, 0.0f); 
     player.get_counter().setPosition(cfg::window::width - cfg::counter::shift_x - player.get_counter().getGlobalBounds().width, 0.0f);
 
-    if (!pop_buffer.loadFromFile(res_path + "pop.wav"))
+    if (!sound_buffer_pop.loadFromFile(res_path + "pop.wav"))
         throw std::runtime_error("Failed to load sound.");
-    pop_sound.setBuffer(pop_buffer);
 }
 
 void App::run(void) {
@@ -26,7 +25,7 @@ void App::run(void) {
     AIController   ai_controller(&ball, &enemy);
     EventHandler   event_handler(&window);
     InputProcessor input_processor(&player);
-    Observer       observer(&ball, &enemy, &player);
+    Observer       observer(&ball, &enemy, &player, sound_buffer_pop);
 
     while (window.isOpen()) {
         float dt = dt_clock.restart().asSeconds();
@@ -40,11 +39,6 @@ void App::run(void) {
         enemy.border_check();
         player.border_check();
 
-        if (ball.border_check() ||
-            enemy.ball_collision_check(ball) ||
-            player.ball_collision_check(ball))
-            pop_sound.play();
-        
         draw();
     }
 }
