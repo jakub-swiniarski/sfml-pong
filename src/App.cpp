@@ -35,9 +35,6 @@ void App::run(void) {
         event_handler.update();
         input_processor.update(dt);
         observer.update();
-        
-        enemy.border_check();
-        player.border_check();
 
         draw();
     }
