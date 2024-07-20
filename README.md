@@ -6,14 +6,12 @@
 ## How to install?
 ### Prerequisites
 - g++
+- make 
 - sfml
-- git
-- make
 ### Compile & install
+Run this with root privileges:
 ```shell
-git clone https://github.com/jakub-swiniarski/sfml-pong.git
-cd sfml-pong
-sudo make install 
+make install 
 ```
 ### How to run?
 Run this command: 
@@ -21,9 +19,9 @@ Run this command:
 pong
 ```
 ### How to uninstall?
-Go inside the cloned repository and run: <br/>
+Go inside the cloned repository and run this with root privileges:: <br/>
 ```shell
-sudo make clean uninstall
+make uninstall
 ```
 
 ## Controls
@@ -32,7 +30,7 @@ Down arrow - move down <br/>
 Escape - exit the game
 
 ## Customization
-Edit src/config.hpp and run:
+Edit src/config.hpp and run this with root privileges::
 ```shell
-sudo make install 
+make install 
 ```
