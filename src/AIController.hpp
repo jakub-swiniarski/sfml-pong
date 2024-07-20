@@ -5,8 +5,8 @@ class Ball;
 class Paddle;
 
 class AIController {
-    Ball&   ball;
-    Paddle& paddle;
+    const Ball&   ball;
+    Paddle&       paddle;
 
 public:
     AIController(Ball& ball, Paddle& paddle);

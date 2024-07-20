@@ -13,5 +13,4 @@ void AIController::update(float mod) const {
         paddle.move(0.0f, -cfg::enemy::speed_y * mod);
     else
         paddle.move(0.0f, cfg::enemy::speed_y * mod);
-    
 }
