@@ -10,7 +10,7 @@ Observer::Observer(Ball* ball, Paddle* enemy, Paddle* player)
       player(player) {}
 
 void Observer::update(void) const {
-    if (ball->getPosition().x <= 0.f) {
+    if (ball->getPosition().x <= 0.0f) {
         player->update_counter();
         ball->reset();
     } else if (ball->getPosition().x >= cfg::window::width - ball->getRadius()) {

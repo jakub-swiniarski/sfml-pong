@@ -9,9 +9,9 @@ AIController::AIController(Ball* ball, Paddle* paddle)
       paddle(paddle) {}
 
 void AIController::update(float mod) const {
-    if (paddle->getPosition().y + paddle->getSize().y / 2.f > ball->getPosition().y + ball->getRadius() / 2.f)
-        paddle->move(0.f, -cfg::enemy::speed_y * mod);
+    if (paddle->getPosition().y + paddle->getSize().y / 2.0f > ball->getPosition().y + ball->getRadius() / 2.0f)
+        paddle->move(0.0f, -cfg::enemy::speed_y * mod);
     else
-        paddle->move(0.f, cfg::enemy::speed_y * mod);
+        paddle->move(0.0f, cfg::enemy::speed_y * mod);
     
 }
