@@ -19,7 +19,7 @@ Run this command:
 pong
 ```
 ### How to uninstall?
-Go inside the cloned repository and run this with root privileges:: <br/>
+Go inside the cloned repository and run this with root privileges: <br/>
 ```shell
 make uninstall
 ```
@@ -30,7 +30,7 @@ Down arrow - move down <br/>
 Escape - exit the game
 
 ## Customization
-Edit src/config.hpp and run this with root privileges::
+Edit src/config.hpp and run this with root privileges:
 ```shell
 make install 
 ```
